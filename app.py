@@ -9,22 +9,27 @@ def yes_man(message, history):
 def search_book(book_name):
     return f"Searching for: {book_name}"
    
-gr.Markdown("## Book Search")
 
-book_box = gr.Textbox(
+with gr.Blocks() as demo:
+    gr.Markdown("## Book Search")
+
+    book_box = gr.Textbox(
         label="Enter book name",
         placeholder="e.g. Pride and Prejudice"
     )
 
-search_btn = gr.Button("Search")
+    search_btn = gr.Button("Search")
 
-output = gr.Textbox(label="Result")
+    output = gr.Textbox(label="Result")
 
-search_btn.click(
+    # When the button is clicked, the function is called with the textbox content
+    search_btn.click(
         fn=search_book,          # function to execute
         inputs=book_box,         # value from the textbox
         outputs=output           # put result here
     )
+
+demo.launch()
 
 gr.ChatInterface(
     yes_man,
