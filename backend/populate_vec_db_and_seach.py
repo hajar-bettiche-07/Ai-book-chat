@@ -71,16 +71,32 @@ def upload_embeddings(docs,client,model,collection_name):
 #--------------------------  if book collection exists  move to search if not create collection and populate it with paragraph embeddings ------------------------------------
 
 def create_populate_collection_if_not_exist(book_name_sup):
-   client = get_client()
-   model = get_model()
-   collection_name = book_name_sup.lower().replace(" ", "_") 
-   collection_exists = does_collection_exist(collection_name,client)
-   if collection_exists:
-      return "exists"
-   create_collection(collection_name,client,model,EMBEDDING_MODEL_NAME)
-   selected_paragraphs = get_paragraphs(book_name_sup)
-   upload_embeddings(selected_paragraphs,client,model,collection_name)
-   return "populated"
+    print(f"[DEBUG] create_populate_collection_if_not_exist called with: {book_name_sup}")
+    client = get_client()
+    print("[DEBUG] got Qdrant client")
+    model = get_model()
+    print("[DEBUG] got embedding model")
+
+    collection_name = book_name_sup.lower().replace(" ", "_")
+    print(f"[DEBUG] computed collection_name = {collection_name}")
+
+    collection_exists = does_collection_exist(collection_name, client)
+    print(f"[DEBUG] does_collection_exist -> {collection_exists}")
+
+    if collection_exists:
+        print("[DEBUG] collection exists, returning 'exists'")
+        return "exists"
+
+    create_collection(collection_name, client, model, EMBEDDING_MODEL_NAME)
+    print("[DEBUG] collection created")
+
+    selected_paragraphs = get_paragraphs(book_name_sup)
+    print(f"[DEBUG] fetched {len(selected_paragraphs)} paragraphs")
+
+    upload_embeddings(selected_paragraphs, client, model, collection_name)
+    print("[DEBUG] upload_embeddings finished")
+
+    return "populated"
  
 
 #-------------------------------search------------------------------------------
@@ -123,6 +139,9 @@ def collection_name_for_book(book_name: str) -> str:
 
 
 def get_client() -> QdrantClient:
+    print(f"[DEBUG] QDRANT_URL={QDRANT_URL}, QDRANT_API_KEY is set={QDRANT_API_KEY is not None}")
+    if QDRANT_URL is None or QDRANT_API_KEY is None:
+        raise RuntimeError("QDRANT_URL or QDRANT_API_KEY is not set in environment.")
     return QdrantClient(
         url=QDRANT_URL,
         api_key=QDRANT_API_KEY,

@@ -7,6 +7,7 @@ def yes_man(message, history):
         return "Ask me anything!"
 
 def clickTrigger(book_name):
+    print(f"[DEBUG] Button clicked with book_name={book_name!r}")
     create_populate_collection_if_not_exist(book_name)
 
 with gr.Blocks() as demo:
