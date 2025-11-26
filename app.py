@@ -8,36 +8,42 @@ def yes_man(message, history):
 
 def search_book(book_name):
     return f"Searching for: {book_name}"
-   
 
 with gr.Blocks() as demo:
-    gr.Markdown("## Book Search")
+    gr.Markdown("## Book Search & Chat")
 
-    book_box = gr.Textbox(
-        label="Enter book name",
-        placeholder="e.g. Pride and Prejudice"
-    )
+    # ---------- Book Search UI ----------
+    with gr.Group():
+        gr.Markdown("### Search for a Book")
+        book_box = gr.Textbox(
+            label="Enter book name",
+            placeholder="e.g. Pride and Prejudice"
+        )
+        search_btn = gr.Button("Search")
+        output = gr.Textbox(label="Result")
 
-    search_btn = gr.Button("Search")
+        search_btn.click(
+            fn=search_book,
+            inputs=book_box,
+            outputs=output
+        )
 
-    output = gr.Textbox(label="Result")
+    # ---------- Chat Interface ----------
+    gr.Markdown("### Book Chatbot")
 
-    # When the button is clicked, the function is called with the textbox content
-    search_btn.click(
-        fn=search_book,          # function to execute
-        inputs=book_box,         # value from the textbox
-        outputs=output           # put result here
+    chat = gr.ChatInterface(
+        fn=yes_man,
+        type="messages",
+        chatbot=gr.Chatbot(height=300),
+        textbox=gr.Textbox(
+            placeholder="Chat With Book",
+            container=False,
+            scale=7
+        ),
+        title="Book Chat",
+        description="Ask specific questions about books you're reading",
+        # If this theme causes errors, you can remove it or use gr.themes.Ocean()
+        # theme="ocean",
     )
 
 demo.launch()
-
-gr.ChatInterface(
-    yes_man,
-    type="messages",
-    chatbot=gr.Chatbot(height=300),
-    textbox=gr.Textbox(placeholder="Chat With Book", container=False, scale=7),
-    title="Book Chat",
-    description="Ask specific questions about books you're reading",
-    theme="ocean",
-).launch()
-
