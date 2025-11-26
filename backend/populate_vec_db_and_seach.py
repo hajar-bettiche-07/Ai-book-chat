@@ -15,16 +15,61 @@ EMBEDDING_MODEL_NAME = "BAAI/bge-small-en-v1.5"
 
 # ------------------- Function to get paragraphs---------------------------
 
-def get_paragraphs(book_name_sup:str):
-  dataset = load_dataset("Navanjana/Gutenberg_books", split="train", streaming=True)
-  start_stream = dropwhile(lambda x: x.get('book_name') != book_name_sup, dataset)
-  book_stream = takewhile(lambda x: x.get('book_name') == book_name_sup, start_stream)
-  selected_paragraphs = []
-  for row in book_stream:
-    text = row.get('paragraph')
-    if text and len(text) > 20:
-        selected_paragraphs.append(text)
-  return selected_paragraphs
+def get_paragraphs(book_name_sup: str):
+    print(f"[DEBUG] get_paragraphs called with book_name_sup={book_name_sup}", flush=True)
+
+    # 1. Try loading the dataset ----------
+    try:
+        print("[DEBUG] Loading dataset…", flush=True)
+        dataset = load_dataset(
+            "Navanjana/Gutenberg_books", 
+            split="train", 
+            streaming=True
+        )
+        print("[DEBUG] Dataset loaded successfully (streaming mode).", flush=True)
+    except Exception as e:
+        print(f"[ERROR] Failed to load dataset: {e}", flush=True)
+        return []
+    
+    # 2. Start scanning dataset until we find the target book ----------
+    print("[DEBUG] Starting dropwhile (scanning until first matching book)…", flush=True)
+    start_stream = dropwhile(lambda x: x.get("book_name") != book_name_sup, dataset)
+
+    # 3. Prepare takewhile ----------
+    print("[DEBUG] Starting takewhile (reading only matching book rows)…", flush=True)
+    book_stream = takewhile(lambda x: x.get("book_name") == book_name_sup, start_stream)
+
+    selected_paragraphs = []
+    row_count = 0
+    match_count = 0
+    
+    # 4. Iterate through streaming rows ----------
+    print("[DEBUG] Iterating through book_stream…", flush=True)
+    for row in book_stream:
+        row_count += 1
+        
+        if row_count <= 3:  # First few rows, to confirm structure
+            print(f"[DEBUG] Sample row #{row_count}: {row}", flush=True)
+
+        text = row.get("paragraph")
+        if text:
+            match_count += 1
+
+        if text and len(text) > 20:
+            selected_paragraphs.append(text)
+
+        # Safety break: prevent infinite loops or huge scanning
+        if row_count % 500 == 0:
+            print(f"[DEBUG] Processed {row_count} rows so far, paragraphs collected: {len(selected_paragraphs)}", flush=True)
+
+    # 5. Summary ----------
+    print(f"[DEBUG] Finished streaming. Total matching rows: {match_count}", flush=True)
+    print(f"[DEBUG] Total selected paragraphs (len > 20): {len(selected_paragraphs)}", flush=True)
+
+    if len(selected_paragraphs) == 0:
+        print(f"[WARNING] No paragraphs found for book '{book_name_sup}'.", flush=True)
+    
+    return selected_paragraphs
 
 
 #------------------------------ Function to check of collection already exists in qdrant -------------------------

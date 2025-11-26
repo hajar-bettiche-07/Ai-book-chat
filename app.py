@@ -13,7 +13,7 @@ def clickTrigger(book_name):
 with gr.Blocks() as demo:
     gr.Markdown("Book chat")
 
-    # ---------- Book Search UI ----------
+    # ---------- Book Search UI ------------------
     with gr.Group():
         book_box = gr.Textbox(
             label="Enter book name",
