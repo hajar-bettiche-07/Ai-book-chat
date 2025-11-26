@@ -1,20 +1,19 @@
 import gradio as gr
-
+from backend.populate_vec_db_and_seach import search_book , create_populate_collection_if_not_exist
 def yes_man(message, history):
     if message.endswith("?"):
         return "Yes"
     else:
         return "Ask me anything!"
 
-def search_book(book_name):
-    return f"Searching for: {book_name}"
+def clickTrigger(book_name):
+    create_populate_collection_if_not_exist(book_name)
 
 with gr.Blocks() as demo:
     gr.Markdown("Book chat")
 
     # ---------- Book Search UI ----------
     with gr.Group():
-        gr.Markdown("### Search for a Book")
         book_box = gr.Textbox(
             label="Enter book name",
             placeholder="e.g. Pride and Prejudice"
@@ -23,11 +22,11 @@ with gr.Blocks() as demo:
         output = gr.Textbox(label="Result")
 
         search_btn.click(
-            fn=search_book,
+            fn=clickTrigger,
             inputs=book_box)
 
     # ---------- Chat Interface ----------
-    gr.Markdown("### Book Chatbot")
+
 
     chat = gr.ChatInterface(
         fn=yes_man,
