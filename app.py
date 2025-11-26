@@ -1,40 +1,71 @@
 import gradio as gr
 
-# ====== Fonction principale du chatbot ======
+# ====== Main chatbot function ======
 def book_chat(message, history):
     """
-    Logique simple pour Book-Chat.
-    Remplace cette partie par ton vrai modèle ou traitement.
+    Simple logic for Book-Chat.
+    Replace this part with your real model or processing.
     """
     if message.strip() == "":
-        return "Écris quelque chose, s'il te plaît !"
+        return "Please type something!"
 
     if message.endswith("?"):
-        return "Bonne question ! Laisse-moi t'expliquer..."
-    elif "résumé" in message.lower():
-        return "Voici un résumé simple du passage demandé..."
-    elif "personnage" in message.lower():
-        return "Les personnages principaux sont : … (à compléter selon le texte)"
+        return "Good question! Let me explain..."
+    elif "summary" in message.lower():
+        return "Here is a concise summary of the requested passage."
+    elif "character" in message.lower():
+        return "The main characters are: … (to be completed based on the text)"
     else:
-        return "D'accord ! Voici ma réponse : " + message
+        return "Alright! Here’s my response: " + message
 
-# ====== Interface Gradio ======
-gr.ChatInterface(
-    book_chat,
-    type="messages",
-    chatbot=gr.Chatbot(height=350),
-    textbox=gr.Textbox(
-        placeholder="Pose ta question sur un livre...",
-        container=False,
-        scale=7
-    ),
-    title="📘 Book-Chat",
-    description="Discute avec ton assistant sur les livres, résumés et analyses.",
-    theme="ocean",
-    examples=[
-        "Peux-tu résumer ce chapitre ?",
-        "Que signifie cette phrase ?",
-        "Parle-moi des personnages principaux."
-    ],
-    cache_examples=True,
-).launch()
+# ====== Professional Gradio interface with colors ======
+custom_theme = gr.themes.Base(
+    primary_hue="blue",          # main buttons and accents
+    secondary_hue="gray",        # textbox and chat background
+    neutral_hue="lightgray"      # general background
+)
+
+with gr.Blocks(theme=custom_theme, css="""
+    #chatbot .chatbot-message {
+        border-radius: 10px;
+        padding: 8px 12px;
+        margin-bottom: 4px;
+    }
+    #chatbot .chatbot-message.user {
+        background-color: #d0e1ff;
+    }
+    #chatbot .chatbot-message.bot {
+        background-color: #f0f4f8;
+    }
+""") as demo:
+
+    gr.Markdown(
+        """
+        ## Book-Chat Assistant
+        Chat with your assistant about books, summaries, and analyses.
+        Ask questions and receive clear, professional answers.
+        """
+    )
+
+    chatbot = gr.Chatbot(label="Book-Chat", height=400, elem_id="chatbot")
+
+    with gr.Row():
+        txt = gr.Textbox(
+            placeholder="Type your question here...",
+            label="Your Question",
+            scale=8
+        )
+        btn = gr.Button("Send", variant="primary")
+
+    # ====== Interaction logic ======
+    def respond(message, history):
+        reply = book_chat(message, history)
+        history = history or []
+        history.append((message, reply))
+        return history, history
+
+    btn.click(respond, [txt, chatbot], [chatbot, chatbot])
+    txt.submit(respond, [txt, chatbot], [chatbot, chatbot])
+
+# ====== Launch interface ======
+demo.launch()
