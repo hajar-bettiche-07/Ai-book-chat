@@ -2,10 +2,6 @@ import gradio as gr
 
 # ====== Main chatbot function ======
 def book_chat(message, history):
-    """
-    Simple logic for Book-Chat.
-    Replace this part with your real model or processing.
-    """
     if message.strip() == "":
         return "Please type something!"
 
@@ -18,11 +14,11 @@ def book_chat(message, history):
     else:
         return "Alright! Here’s my response: " + message
 
-# ====== Professional Gradio interface with colors ======
+# ====== Professional Gradio interface with valid colors ======
 custom_theme = gr.themes.Base(
-    primary_hue="blue",          # main buttons and accents
-    secondary_hue="gray",        # textbox and chat background
-    neutral_hue="lightgray"      # general background
+    primary_hue="blue",       # main buttons and accents
+    secondary_hue="gray",     # textbox and chat background
+    neutral_hue="#f5f5f5"     # general background (light gray)
 )
 
 with gr.Blocks(theme=custom_theme, css="""
@@ -67,5 +63,4 @@ with gr.Blocks(theme=custom_theme, css="""
     btn.click(respond, [txt, chatbot], [chatbot, chatbot])
     txt.submit(respond, [txt, chatbot], [chatbot, chatbot])
 
-# ====== Launch interface ======
 demo.launch()
