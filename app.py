@@ -10,7 +10,7 @@ def search_book(book_name):
     return f"Searching for: {book_name}"
 
 with gr.Blocks() as demo:
-    gr.Markdown("## Book Search & Chat")
+    gr.Markdown("Book chat")
 
     # ---------- Book Search UI ----------
     with gr.Group():
@@ -24,9 +24,7 @@ with gr.Blocks() as demo:
 
         search_btn.click(
             fn=search_book,
-            inputs=book_box,
-            outputs=output
-        )
+            inputs=book_box)
 
     # ---------- Chat Interface ----------
     gr.Markdown("### Book Chatbot")
@@ -39,11 +37,8 @@ with gr.Blocks() as demo:
             placeholder="Chat With Book",
             container=False,
             scale=7
-        ),
-        title="Book Chat",
-        description="Ask specific questions about books you're reading",
-        # If this theme causes errors, you can remove it or use gr.themes.Ocean()
-        # theme="ocean",
+        )
+       
     )
 
 demo.launch()
