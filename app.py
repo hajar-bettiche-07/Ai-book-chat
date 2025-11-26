@@ -4,7 +4,6 @@ import gradio as gr
 def book_chat(message, history):
     if message.strip() == "":
         return "Please type something!"
-
     if message.endswith("?"):
         return "Good question! Let me explain..."
     elif "summary" in message.lower():
@@ -14,11 +13,11 @@ def book_chat(message, history):
     else:
         return "Alright! Here’s my response: " + message
 
-# ====== Professional Gradio interface with valid colors ======
+# ====== Use only valid Gradio colors ======
 custom_theme = gr.themes.Base(
-    primary_hue="blue",       # main buttons and accents
-    secondary_hue="gray",     # textbox and chat background
-    neutral_hue="#f5f5f5"     # general background (light gray)
+    primary_hue="blue",      # valid color
+    secondary_hue="gray",    # valid color
+    neutral_hue="slate"      # valid color
 )
 
 with gr.Blocks(theme=custom_theme, css="""
@@ -53,7 +52,6 @@ with gr.Blocks(theme=custom_theme, css="""
         )
         btn = gr.Button("Send", variant="primary")
 
-    # ====== Interaction logic ======
     def respond(message, history):
         reply = book_chat(message, history)
         history = history or []
