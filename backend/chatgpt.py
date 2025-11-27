@@ -18,7 +18,8 @@ def generate(user_prompt,history):
     )
 
     # 3. Create messages for chat-style Responses API
-    messages = [
+    print(f"[DEBUG] paragraphs fetched {context_text!r}")
+    input = [
         {
             "role": "developer",
             "content": (
@@ -39,7 +40,7 @@ def generate(user_prompt,history):
     # 5. Call model
     response = client.responses.create(
         model="gpt-5-nano",
-        messages=messages
+        messages=input
     )
 
     answer = response.output_text
