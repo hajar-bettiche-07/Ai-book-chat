@@ -5,11 +5,11 @@ from app import BOOK_NAME
 
 
 
-def generate(user_prompt,history):
+def generate(user_prompt,book_name):
     #book_name = "Pride And Prejudice"
 
     # 1. Vector search (returns list of dicts)
-    hits = search_book(BOOK_NAME, user_prompt, 5)
+    hits = search_book(book_name, user_prompt, 5)
 
     # 2. Prepare a text block summarizing retrieved context
     context_text = "\n\n".join(

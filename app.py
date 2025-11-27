@@ -5,6 +5,10 @@ from backend.chatgpt import generate
 
 BOOK_NAME=""
 
+def echo(message, history):
+    chat_response = generate(message,BOOK_NAME)
+    return chat_response
+    
 def show_loading_message():
     return gr.update(value="Searching for your book...", visible=True)
 
@@ -38,7 +42,7 @@ with gr.Blocks() as demo:
 
     with gr.Group(visible=False) as chat_section:
         chat = gr.ChatInterface(
-            fn=generate,
+            fn=echo,
             type="messages",
             chatbot=gr.Chatbot(height=300, type="messages"),
             textbox=gr.Textbox(
