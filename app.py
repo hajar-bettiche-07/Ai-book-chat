@@ -40,7 +40,7 @@ with gr.Blocks(
     .header-section {
         background: linear-gradient(135deg, #d97706 0%, #dc2626 100%);
         padding: 60px 80px;
-        margin: 0 0 40px 0;
+        margin: 0 0 0 0;
         position: relative;
         overflow: hidden;
     }
@@ -97,18 +97,19 @@ with gr.Blocks(
         font-weight: 400;
     }
     
-    /* Feature Cards */
+    /* Feature Cards Section - Light Brown Background */
     .features-section {
-        padding: 0 80px 60px 80px;
+        background: linear-gradient(135deg, #f5e6d3 0%, #e8d4b8 100%);
+        padding: 60px 80px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 24px;
-        margin-bottom: 40px;
+        margin-bottom: 0;
     }
     
     .feature-card {
         background: white;
-        border: 1px solid #f3d5b5;
+        border: 1px solid #d2b48c;
         border-radius: 16px;
         padding: 32px 24px;
         text-align: center;
@@ -150,8 +151,9 @@ with gr.Blocks(
     
     /* Search Section - Cozy Orange Background */
     .search-section {
-        padding: 0 80px;
-        margin-bottom: 60px;
+        padding: 60px 80px;
+        margin-bottom: 0;
+        background: white;
     }
     
     .search-card {
@@ -253,7 +255,8 @@ with gr.Blocks(
     
     /* Chat Section */
     .chat-section {
-        padding: 0 80px 80px 80px;
+        padding: 60px 80px 80px 80px;
+        background: white;
     }
     
     .chat-container {
@@ -286,7 +289,7 @@ with gr.Blocks(
     </div>
     """)
     
-    # Feature Cards
+    # Feature Cards with Light Brown Background
     gr.HTML("""
     <div class="features-section">
         <div class="feature-card">
