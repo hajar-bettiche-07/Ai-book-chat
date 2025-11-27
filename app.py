@@ -30,30 +30,35 @@ def clickTrigger(book_name):
 
 with gr.Blocks(
     css="""
-    /* Global Styles */
+    /* Global Styles - ELIMINER LES ESPACES */
     .gradio-container {
         max-width: 100% !important;
         padding: 0 !important;
+        margin: 0 !important;
     }
     
-    /* Remove vertical gaps between sections */
+    /* Supprimer TOUS les gaps et marges entre les sections */
     .gradio-container > .contain {
         gap: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
     
     .contain > div {
         margin-top: 0 !important;
         margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
     
-    /* Header Section - BIGGER */
+    /* Header Section - PLUS DE MARGES */
     .header-section {
         background: linear-gradient(135deg, #d97706 0%, #dc2626 100%);
-        padding: 100px 0;
-        margin: 0;
+        padding: 100px 0 80px 0 !important;
+        margin: 0 !important;
         position: relative;
         overflow: hidden;
-        border-radius: 0 0 30px 30px;
+        border-radius: 0 !important;
         min-height: 300px;
     }
     
@@ -112,12 +117,12 @@ with gr.Blocks(
         font-weight: 400;
     }
     
-    /* Feature Cards Section - Light Brown Background */
+    /* Feature Cards Section - COLLÉ À L'HEADER */
     .features-section {
         background: linear-gradient(135deg, #f5e6d3 0%, #e8d4b8 100%);
-        padding: 60px 0;
-        margin: 0;
-        border-radius: 30px 30px 0 0;
+        padding: 60px 0 !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
     }
     
     .features-grid {
@@ -171,12 +176,12 @@ with gr.Blocks(
         margin: 0;
     }
     
-    /* Search Section - BIGGER - NO WHITE SPACE */
+    /* Search Section - COLLÉ AUX FEATURES */
     .search-section-wrapper {
         background: white;
-        padding: 80px 0;
-        margin: 0;
-        border-radius: 0 0 30px 30px;
+        padding: 80px 0 !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
     }
     
     .search-section {
@@ -236,10 +241,11 @@ with gr.Blocks(
         margin-bottom: 0;
     }
     
+    /* Search Inputs - COLLÉ À LA SEARCH SECTION */
     .search-inputs {
         max-width: 1400px;
-        margin: 30px auto 0 auto;
-        padding: 0 80px;
+        margin: 30px auto 0 auto !important;
+        padding: 0 80px !important;
     }
     
     .search-box-container {
@@ -289,12 +295,12 @@ with gr.Blocks(
         font-weight: 500;
     }
     
-    /* Chat Section */
+    /* Chat Section - COLLÉ AUX SEARCH INPUTS */
     .chat-section-wrapper {
         background: white;
-        padding: 60px 0 80px 0;
-        margin: 0;
-        border-radius: 30px 30px 0 0;
+        padding: 60px 0 80px 0 !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
     }
     
     .chat-section {
@@ -317,10 +323,44 @@ with gr.Blocks(
         color: #1f2937;
         margin-bottom: 24px;
     }
+    
+    /* FORCER la suppression de tous les espaces entre les blocs Gradio */
+    div[data-testid]:has(.header-section) {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    div[data-testid]:has(.features-section) {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    div[data-testid]:has(.search-section-wrapper) {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    div[data-testid]:has(.search-inputs) {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    div[data-testid]:has(.chat-section-wrapper) {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
     """
 ) as demo:
     
-    # Header - BIGGER
+    # Header
     gr.HTML("""
     <div class="header-section">
         <div class="header-content">
@@ -333,7 +373,7 @@ with gr.Blocks(
     </div>
     """)
     
-    # Feature Cards with Light Brown Background
+    # Feature Cards
     gr.HTML("""
     <div class="features-section">
         <div class="features-grid">
@@ -361,7 +401,7 @@ with gr.Blocks(
     </div>
     """)
     
-    # Search Section - BIGGER - NO WHITE SPACE
+    # Search Section
     gr.HTML("""
     <div class="search-section-wrapper">
         <div class="search-section">
@@ -371,7 +411,7 @@ with gr.Blocks(
                 </div>
                 <div class="search-content">
                     <div class="search-title">
-                        <span style="font-size: 38px;">✨</span>
+                        <span style="font-size: 38px;"></span>
                         <h2>Find Your Book</h2>
                     </div>
                     <p class="search-subtitle">Enter a book title and start an intelligent conversation about it</p>
