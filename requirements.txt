@@ -1,2 +1,2 @@
-qdrant-client[fastembed]
+qdrant-client[fastembed-gpu]
 openai

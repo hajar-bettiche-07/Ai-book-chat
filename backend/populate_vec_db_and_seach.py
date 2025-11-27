@@ -196,5 +196,5 @@ def get_client() -> QdrantClient:
     )
 
 def get_model() -> TextEmbedding:
-    return TextEmbedding(model_name=EMBEDDING_MODEL_NAME)
+    return TextEmbedding(model_name=EMBEDDING_MODEL_NAME,providers=["CUDAExecutionProvider", "CPUExecutionProvider"])
 
