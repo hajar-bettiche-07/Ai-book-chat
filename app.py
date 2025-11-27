@@ -44,7 +44,7 @@ with gr.Blocks() as demo:
         chat = gr.ChatInterface(
             fn=yes_man,
             type="messages",
-            chatbot=gr.Chatbot(height=300),
+            chatbot=gr.Chatbot(height=300, type="messages"),
             textbox=gr.Textbox(
                 placeholder="Chat With Book",
                 container=False,
@@ -62,4 +62,3 @@ with gr.Blocks() as demo:
         inputs=book_box,
         outputs=[status_text, chat_section]
     )
-
