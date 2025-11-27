@@ -5,9 +5,11 @@ from backend.populate_vec_db_and_seach import search_book
 
 def generate(user_prompt,book_name):
     #book_name = "Pride And Prejudice"
-
+    print(f"[DEBUG] In Generate Function with book_name :{book_name!r}")
+    print(f"[DEBUG] In Generate Function with user_prompt :{user_prompt!r}")
+    
     # 1. Vector search (returns list of dicts)
-    hits = search_book(book_name, user_prompt, 5)
+    hits = search_book(book_name, user_prompt)
 
     # 2. Prepare a text block summarizing retrieved context
     context_text = "\n\n".join(

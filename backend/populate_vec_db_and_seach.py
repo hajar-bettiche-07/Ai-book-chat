@@ -148,14 +148,16 @@ def create_populate_collection_if_not_exist(book_name_sup):
 def search_book(
     bookname: str,
     query_text: str,
-    top_k: int = 5,
+    top_k: int = 10,
     score_threshold: float | None = None,
 ):
 
     client = get_client()
     model = get_model()
     # 1) Embed the query text
+    print("[DEBUG] Calculating Query Vector ........")
     query_vector = list(model.embed([query_text]))[0]
+    print(f"Query Vecot : {query_vector}")
     collection_name = collection_name_for_book(bookname)
     # 2) Query Qdrant with cosine similarity (collection is configured as COSINE)
     result = client.query_points(
@@ -176,6 +178,7 @@ def search_book(
                 "text": point.payload["text"]
             }
         )
+    print(f"We got some paragraphs Hits:{hits[0]}")   
     return hits
 
 
