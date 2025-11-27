@@ -118,19 +118,13 @@ with gr.Blocks(
             chatbot=gr.Chatbot(
                 height=400,
                 type="messages",
-                label="Conversation",
-                scale=1
+                label="Conversation"
             ),
             textbox=gr.Textbox(
                 placeholder="Ask a question about the book...",
                 container=False,
-                scale=7,
-                lines=2
-            ),
-            submit_btn="Send",
-            retry_btn="Retry",
-            undo_btn="Remove Last",
-            clear_btn="Clear Chat"
+                scale=7
+            )
         )
 
     search_btn.click(
