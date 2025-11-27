@@ -1,12 +1,8 @@
 import gradio as gr
 from backend.populate_vec_db_and_seach import create_populate_collection_if_not_exist
+from backend.chatgpt import generate
 
 
-def yes_man(message, history):
-    if message.endswith("?"):
-        return "Yes"
-    else:
-        return "Ask me anything!"
 
 
 def show_loading_message():
@@ -42,7 +38,7 @@ with gr.Blocks() as demo:
 
     with gr.Group(visible=False) as chat_section:
         chat = gr.ChatInterface(
-            fn=yes_man,
+            fn=generate,
             type="messages",
             chatbot=gr.Chatbot(height=300, type="messages"),
             textbox=gr.Textbox(
