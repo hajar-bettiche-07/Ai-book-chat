@@ -5,7 +5,7 @@ from backend.populate_vec_db_and_seach import search_book
 
 
 
-def generate(user_prompt):
+def generate(user_prompt,history):
     book_name = "Pride And Prejudice"
 
     # 1. Vector search (returns list of dicts)
