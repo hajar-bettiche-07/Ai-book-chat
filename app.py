@@ -77,7 +77,7 @@ with gr.Blocks(
     .header-content {
         display: flex;
         align-items: center;
-        gap: 30px;
+        gap: 0px;
         position: relative;
         z-index: 1;
         max-width: 1400px;
@@ -101,7 +101,7 @@ with gr.Blocks(
         color: white;
         font-size: 56px;
         font-weight: 700;
-        margin: 0 0 12px 0;
+        margin: 0;
         letter-spacing: -0.5px;
     }
     
@@ -123,7 +123,7 @@ with gr.Blocks(
     .features-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
+        gap:0px;
         max-width: 1400px;
         margin: 0 auto;
         padding: 0 80px;
@@ -311,7 +311,7 @@ with gr.Blocks(
     }
     
     .chat-header {
-        font-size: 24px;
+        font-size: 50px;
         font-weight: 700;
         color: #1f2937;
         margin-bottom: 24px;
@@ -370,7 +370,7 @@ with gr.Blocks(
                 </div>
                 <div class="search-content">
                     <div class="search-title">
-                        <span style="font-size: 32px;">✨</span>
+                        <span style="font-size: 60px;"></span>
                         <h2>Find Your Book</h2>
                     </div>
                     <p class="search-subtitle">Enter a book title and start an intelligent conversation about it</p>
