@@ -40,7 +40,7 @@ def generate(user_prompt,history):
     # 5. Call model
     response = client.responses.create(
         model="gpt-5-nano",
-        messages=input
+        input=input
     )
 
     answer = response.output_text
