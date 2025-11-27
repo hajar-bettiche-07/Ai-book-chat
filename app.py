@@ -14,6 +14,7 @@ def show_loading_message():
 
 
 def clickTrigger(book_name):
+    global BOOK_NAME
     print(f"[DEBUG] Button clicked with book_name={book_name!r}")
     BOOK_NAME=book_name
     try:
