@@ -30,11 +30,17 @@ def clickTrigger(book_name):
 
 with gr.Blocks(
     css="""
-    /* Global Styles */
+    /* Global Styles - Remove ALL spacing */
+    * {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
     .gradio-container {
         max-width: 100% !important;
         padding: 0 !important;
         margin: 0 !important;
+        gap: 0 !important;
     }
     
     body {
@@ -42,15 +48,21 @@ with gr.Blocks(
         padding: 0 !important;
     }
     
-    /* Remove all gaps */
-    .contain {
+    /* Remove all default Gradio gaps */
+    .contain, .wrap, .gap {
+        gap: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    .gradio-container > div {
         gap: 0 !important;
     }
     
     /* Header Section */
     .header-section {
         background: linear-gradient(135deg, #d97706 0%, #dc2626 100%);
-        padding: 60px 80px;
+        padding: 60px 80px !important;
         margin: 0 !important;
         position: relative;
         overflow: hidden;
@@ -77,7 +89,7 @@ with gr.Blocks(
     .header-content {
         display: flex;
         align-items: center;
-        gap: 24px;
+        gap: 24px !important;
         position: relative;
         z-index: 1;
     }
@@ -98,33 +110,38 @@ with gr.Blocks(
         color: white;
         font-size: 48px;
         font-weight: 700;
-        margin: 0 0 8px 0;
+        margin: 0 0 8px 0 !important;
         letter-spacing: -0.5px;
     }
     
     .header-text p {
         color: rgba(255, 255, 255, 0.95);
         font-size: 20px;
-        margin: 0;
+        margin: 0 !important;
         font-weight: 400;
     }
     
     /* Feature Cards Section - Light Brown Background */
-    .features-section {
+    .features-wrapper {
         background: linear-gradient(135deg, #f5e6d3 0%, #e8d4b8 100%);
-        padding: 60px 80px;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 30px;
+    }
+    
+    .features-section {
+        padding: 60px 80px !important;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
+        gap: 24px !important;
         margin: 0 !important;
-        border-radius: 30px;
     }
     
     .feature-card {
         background: white;
         border: 2px solid #d2b48c;
         border-radius: 20px;
-        padding: 32px 24px;
+        padding: 32px 24px !important;
         text-align: center;
         box-shadow: 0 4px 12px rgba(139, 69, 19, 0.1);
         transition: all 0.3s ease;
@@ -144,7 +161,7 @@ with gr.Blocks(
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 20px auto;
+        margin: 0 auto 20px auto !important;
         font-size: 28px;
     }
     
@@ -152,19 +169,19 @@ with gr.Blocks(
         font-size: 18px;
         font-weight: 600;
         color: #1f2937;
-        margin: 0 0 12px 0;
+        margin: 0 0 12px 0 !important;
     }
     
     .feature-card p {
         font-size: 14px;
         color: #6b7280;
         line-height: 1.6;
-        margin: 0;
+        margin: 0 !important;
     }
     
     /* Search Section - Cozy Orange Background */
     .search-section {
-        padding: 60px 80px;
+        padding: 60px 80px !important;
         margin: 0 !important;
         background: white;
         border-radius: 30px;
@@ -174,10 +191,10 @@ with gr.Blocks(
         background: linear-gradient(135deg, #ffe4cc 0%, #ffd4a3 100%);
         border: 2px solid #ffb366;
         border-radius: 25px;
-        padding: 48px;
+        padding: 48px !important;
         box-shadow: 0 6px 16px rgba(255, 140, 0, 0.2);
         display: flex;
-        gap: 40px;
+        gap: 40px !important;
         align-items: center;
     }
     
@@ -203,27 +220,27 @@ with gr.Blocks(
     .search-title {
         display: flex;
         align-items: center;
-        gap: 12px;
-        margin-bottom: 16px;
+        gap: 12px !important;
+        margin-bottom: 16px !important;
     }
     
     .search-title h2 {
         font-size: 32px;
         font-weight: 700;
         color: #8b4513;
-        margin: 0;
+        margin: 0 !important;
     }
     
     .search-subtitle {
         color: #654321;
         font-size: 16px;
-        margin-bottom: 24px;
+        margin-bottom: 24px !important;
     }
     
     .search-box-container {
         display: flex;
-        gap: 12px;
-        margin-bottom: 16px;
+        gap: 12px !important;
+        margin-bottom: 16px !important;
     }
     
     .search-box-container input {
@@ -261,7 +278,7 @@ with gr.Blocks(
     }
     
     .status-message {
-        padding: 12px 20px;
+        padding: 12px 20px !important;
         border-radius: 12px;
         font-size: 14px;
         font-weight: 500;
@@ -269,7 +286,7 @@ with gr.Blocks(
     
     /* Chat Section */
     .chat-section {
-        padding: 60px 80px 80px 80px;
+        padding: 60px 80px 80px 80px !important;
         background: white;
         margin: 0 !important;
         border-radius: 30px 30px 0 0;
@@ -279,7 +296,7 @@ with gr.Blocks(
         background: white;
         border: 2px solid #e5e7eb;
         border-radius: 25px;
-        padding: 32px;
+        padding: 32px !important;
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     }
     
@@ -287,49 +304,51 @@ with gr.Blocks(
         font-size: 24px;
         font-weight: 700;
         color: #1f2937;
-        margin-bottom: 24px;
+        margin-bottom: 24px !important;
     }
     """
 ) as demo:
     
     # Header
-    gr.HTML("""
-    <div class="header-section">
-        <div class="header-content">
-            <div class="header-icon">📖</div>
-            <div class="header-text">
-                <h1>Welcome to ChatBook</h1>
-                <p>Your intelligent reading companion</p>
+    with gr.Group(elem_classes=""):
+        gr.HTML("""
+        <div class="header-section">
+            <div class="header-content">
+                <div class="header-icon">📖</div>
+                <div class="header-text">
+                    <h1>Welcome to ChatBook</h1>
+                    <p>Your intelligent reading companion</p>
+                </div>
             </div>
         </div>
-    </div>
-    """)
+        """)
     
     # Feature Cards with Light Brown Background
-    gr.HTML("""
-    <div class="features-section">
-        <div class="feature-card">
-            <div class="feature-icon">💬</div>
-            <h3>Deep Discussions</h3>
-            <p>Ask complex questions about plot, themes, and characters</p>
+    with gr.Group(elem_classes="features-wrapper"):
+        gr.HTML("""
+        <div class="features-section">
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>Deep Discussions</h3>
+                <p>Ask complex questions about plot, themes, and characters</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Instant Answers</h3>
+                <p>Get immediate AI-powered responses about any book</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⏱️</div>
+                <h3>Save Time</h3>
+                <p>No need to re-read - get quick summaries and insights</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Learn More</h3>
+                <p>Discover hidden meanings and literary analysis</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <h3>Instant Answers</h3>
-            <p>Get immediate AI-powered responses about any book</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">⏱️</div>
-            <h3>Save Time</h3>
-            <p>No need to re-read - get quick summaries and insights</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">📈</div>
-            <h3>Learn More</h3>
-            <p>Discover hidden meanings and literary analysis</p>
-        </div>
-    </div>
-    """)
+        """)
     
     # Search Section with Cozy Orange Background
     with gr.Group(elem_classes="search-section"):
