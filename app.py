@@ -10,7 +10,7 @@ def yes_man(message, history):
 
 
 def show_loading_message():
-    """Display a short-lived loading message while we prepare the vector DB."""
+    """Display a short-lived loading message while we prepare the vector DB"""
     return gr.update(value="Searching for your book...", visible=True)
 
 
