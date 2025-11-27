@@ -248,10 +248,8 @@ with gr.Blocks(
                         scale=7,
                         lines=2
                     ),
-                    submit_btn="Send",
-                    retry_btn="Retry",
-                    undo_btn="Remove Last",
-                    clear_btn="Clear Chat"
+                    submit_btn="Send"
+                    # Retirer retry_btn, undo_btn, clear_btn qui ne sont pas supportés
                 )
 
     # ---------- Event handlers ----------
