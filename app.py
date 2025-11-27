@@ -26,7 +26,6 @@ def clickTrigger(book_name):
     success_msg = "Book ready! Start chatting below."
     return gr.update(value=success_msg, visible=True), gr.update(visible=True)
     
-"""
 with gr.Blocks() as demo:
     gr.Markdown("Book chat")
 
@@ -64,4 +63,3 @@ with gr.Blocks() as demo:
         outputs=[status_text, chat_section]
     )
 
-"""
