@@ -3,15 +3,15 @@ from backend.populate_vec_db_and_seach import create_populate_collection_if_not_
 from backend.chatgpt import generate
 
 
-
+BOOK_NAME=""
 
 def show_loading_message():
-    """Display a short-lived loading message while we prepare the vector DB"""
     return gr.update(value="Searching for your book...", visible=True)
 
 
 def clickTrigger(book_name):
     print(f"[DEBUG] Button clicked with book_name={book_name!r}")
+    BOOK_NAME=book_name
     try:
         create_populate_collection_if_not_exist(book_name)
     except Exception as exc:

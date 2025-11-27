@@ -1,15 +1,15 @@
 import os
 from openai import OpenAI
 from backend.populate_vec_db_and_seach import search_book
-
+from app import BOOK_NAME
 
 
 
 def generate(user_prompt,history):
-    book_name = "Pride And Prejudice"
+    #book_name = "Pride And Prejudice"
 
     # 1. Vector search (returns list of dicts)
-    hits = search_book(book_name, user_prompt, 5)
+    hits = search_book(BOOK_NAME, user_prompt, 5)
 
     # 2. Prepare a text block summarizing retrieved context
     context_text = "\n\n".join(
