@@ -77,7 +77,7 @@ with gr.Blocks(
     .header-content {
         display: flex;
         align-items: center;
-        gap: 0px;
+        gap: 30px;
         position: relative;
         z-index: 1;
         max-width: 1400px;
@@ -101,7 +101,7 @@ with gr.Blocks(
         color: white;
         font-size: 56px;
         font-weight: 700;
-        margin: 0;
+        margin: 0 0 12px 0;
         letter-spacing: -0.5px;
     }
     
@@ -117,13 +117,13 @@ with gr.Blocks(
         background: linear-gradient(135deg, #f5e6d3 0%, #e8d4b8 100%);
         padding: 60px 0;
         margin: 0;
-        border-radius: 30px;
+        border-radius: 30px 30px 0 0;
     }
     
     .features-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap:0px;
+        gap: 24px;
         max-width: 1400px;
         margin: 0 auto;
         padding: 0 80px;
@@ -171,12 +171,12 @@ with gr.Blocks(
         margin: 0;
     }
     
-    /* Search Section - White Background with padding */
+    /* Search Section - BIGGER - NO WHITE SPACE */
     .search-section-wrapper {
         background: white;
-        padding: 60px 0;
+        padding: 80px 0;
         margin: 0;
-        border-radius: 30px;
+        border-radius: 0 0 30px 30px;
     }
     
     .search-section {
@@ -189,17 +189,18 @@ with gr.Blocks(
         background: linear-gradient(135deg, #ffe4cc 0%, #ffd4a3 100%);
         border: 2px solid #ffb366;
         border-radius: 25px;
-        padding: 48px;
+        padding: 60px;
         box-shadow: 0 6px 16px rgba(255, 140, 0, 0.2);
         display: flex;
-        gap: 40px;
+        gap: 50px;
         align-items: center;
+        min-height: 280px;
     }
     
     .search-image {
         flex-shrink: 0;
-        width: 300px;
-        height: 200px;
+        width: 350px;
+        height: 240px;
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -219,11 +220,11 @@ with gr.Blocks(
         display: flex;
         align-items: center;
         gap: 12px;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
     }
     
     .search-title h2 {
-        font-size: 32px;
+        font-size: 38px;
         font-weight: 700;
         color: #8b4513;
         margin: 0;
@@ -231,13 +232,13 @@ with gr.Blocks(
     
     .search-subtitle {
         color: #654321;
-        font-size: 16px;
-        margin-bottom: 24px;
+        font-size: 18px;
+        margin-bottom: 0;
     }
     
     .search-inputs {
         max-width: 1400px;
-        margin: 16px auto 0 auto;
+        margin: 30px auto 0 auto;
         padding: 0 80px;
     }
     
@@ -249,10 +250,10 @@ with gr.Blocks(
     
     .search-box-container input {
         flex: 1;
-        padding: 14px 20px !important;
+        padding: 16px 24px !important;
         border: 2px solid #d2691e !important;
         border-radius: 15px !important;
-        font-size: 15px !important;
+        font-size: 16px !important;
         background: white !important;
     }
     
@@ -263,7 +264,7 @@ with gr.Blocks(
     }
     
     .search-button {
-        padding: 14px 32px !important;
+        padding: 16px 40px !important;
         background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%) !important;
         color: white !important;
         border: none !important;
@@ -311,7 +312,7 @@ with gr.Blocks(
     }
     
     .chat-header {
-        font-size: 50px;
+        font-size: 24px;
         font-weight: 700;
         color: #1f2937;
         margin-bottom: 24px;
@@ -360,7 +361,7 @@ with gr.Blocks(
     </div>
     """)
     
-    # Search Section with Cozy Orange Background
+    # Search Section - BIGGER - NO WHITE SPACE
     gr.HTML("""
     <div class="search-section-wrapper">
         <div class="search-section">
@@ -370,7 +371,7 @@ with gr.Blocks(
                 </div>
                 <div class="search-content">
                     <div class="search-title">
-                        <span style="font-size: 60px;"></span>
+                        <span style="font-size: 38px;">✨</span>
                         <h2>Find Your Book</h2>
                     </div>
                     <p class="search-subtitle">Enter a book title and start an intelligent conversation about it</p>
