@@ -1,6 +1,6 @@
 import os
 from openai import OpenAI
-from populate_vec_db_and_seach import search_book
+from backend.populate_vec_db_and_seach import search_book
 
 
 
