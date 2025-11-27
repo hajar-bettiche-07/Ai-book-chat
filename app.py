@@ -57,6 +57,7 @@ with gr.Blocks(
         border-radius: 12px;
         margin-bottom: 30px;
         text-align: center;
+        color: white;
     }
     .header-section h1 {
         color: white;
@@ -82,6 +83,7 @@ with gr.Blocks(
         border-radius: 12px;
         border: 1px solid #e5e7eb;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        padding: 20px;
     }
     .status-message {
         padding: 16px;
@@ -101,8 +103,8 @@ with gr.Blocks(
     }
     .feature-box {
         background-color: #f0f5ff;
-        padding: 20px;
-        border-radius: 10px;
+        padding: 15px;
+        border-radius: 8px;
         margin: 10px 0;
         border-left: 4px solid #4a6fc7;
     }
@@ -124,67 +126,78 @@ with gr.Blocks(
         padding: 20px;
         border-radius: 12px;
         height: fit-content;
+        border: 1px solid #e5e7eb;
     }
     .popular-books-section {
         margin-top: 30px;
+    }
+    .main-title {
+        font-size: 2em;
+        font-weight: bold;
+        color: #1f3d7a;
+        margin-bottom: 10px;
+    }
+    .subtitle {
+        color: #6b7280;
+        margin-bottom: 20px;
     }
     """
 ) as demo:
     
     with gr.Row():
         # Sidebar (Left Column)
-        with gr.Column(scale=1, min_width=250):
+        with gr.Column(scale=1, min_width=280):
             with gr.Group(elem_classes="sidebar"):
-                gr.Markdown("# Book Chat AI")
-                gr.Markdown("Your intelligent reading companion")
+                gr.Markdown("# 📚 Book Chat AI")
+                gr.Markdown("**Your intelligent reading companion**")
                 gr.Markdown("---")
+                gr.Markdown("### 📖 Navigation")
                 gr.Markdown("**My Library**")
-                gr.Markdown("**Settings**")
+                gr.Markdown("**Settings**") 
                 gr.Markdown("**Help**")
                 gr.Markdown("---")
                 
                 # Features Section
-                gr.Markdown("## Features")
+                gr.Markdown("### 🚀 Features")
                 with gr.Group(elem_classes="feature-box"):
-                    gr.Markdown("**Deep Discussions**")
+                    gr.Markdown("**💬 Deep Discussions**")
                     gr.Markdown("Ask complex questions about plot, themes, and characters")
                 
                 with gr.Group(elem_classes="feature-box"):
-                    gr.Markdown("**Instant Answers**")
+                    gr.Markdown("**⚡ Instant Answers**")
                     gr.Markdown("Get immediate AI-powered responses about any book")
                 
                 with gr.Group(elem_classes="feature-box"):
-                    gr.Markdown("**Save Time**")
+                    gr.Markdown("**⏰ Save Time**")
                     gr.Markdown("No need to re-read - get quick summaries and insights")
                 
                 with gr.Group(elem_classes="feature-box"):
-                    gr.Markdown("**Learn More**")
+                    gr.Markdown("**🔍 Learn More**")
                     gr.Markdown("Discover hidden meanings and literary analysis")
 
         # Main Content (Right Column)
         with gr.Column(scale=3):
+            # Main Header
             with gr.Group(elem_classes="header-section"):
-                gr.HTML("""
-                    <h1>Book Chat AI</h1>
-                    <p>Your intelligent reading companion</p>
-                """)
+                gr.Markdown("# Book Chat AI")
+                gr.Markdown("Your intelligent reading companion")
 
             # Search Section
             with gr.Group(elem_classes="search-section"):
-                gr.Markdown("## Find Your Book")
+                gr.Markdown("## 🔍 Find Your Book")
                 gr.Markdown("Enter a book title and start an intelligent conversation about it")
                 
                 with gr.Row():
                     book_box = gr.Textbox(
-                        label="Book Name",
+                        label="",
                         placeholder="Enter book title (e.g., The Great Gatsby)",
                         scale=4,
                         lines=1,
                         container=False
                     )
                     search_btn = gr.Button(
-                        "Search",
-                        variant="primary",
+                        "🔎 Search",
+                        variant="primary", 
                         scale=1,
                         min_width=120
                     )
@@ -193,64 +206,59 @@ with gr.Blocks(
 
             # Popular Books Section
             with gr.Group(elem_classes="popular-books-section"):
-                gr.Markdown("## Popular Books")
+                gr.Markdown("## 📚 Popular Books")
                 
                 # Book Cards in a grid
                 with gr.Row():
                     with gr.Column():
                         with gr.Group(elem_classes="book-card"):
                             gr.Markdown("**The Great Gatsby**")
-                            gr.Markdown("F. Scott Fitzgerald")
-                            gr.Markdown('<div class="rating">⭐ 4.5</div>')
-                            gatsby_btn = gr.Button("Start Chat", size="sm", variant="secondary")
+                            gr.Markdown("*F. Scott Fitzgerald*")
+                            gr.Markdown('⭐ **4.5**')
+                            gatsby_btn = gr.Button("💬 Start Chat", size="sm", variant="secondary")
                     
                     with gr.Column():
                         with gr.Group(elem_classes="book-card"):
                             gr.Markdown("**1984**")
-                            gr.Markdown("George Orwell")
-                            gr.Markdown('<div class="rating">⭐ 4.7</div>')
-                            orwell_btn = gr.Button("Start Chat", size="sm", variant="secondary")
+                            gr.Markdown("*George Orwell*")
+                            gr.Markdown('⭐ **4.7**')
+                            orwell_btn = gr.Button("💬 Start Chat", size="sm", variant="secondary")
                 
                 with gr.Row():
                     with gr.Column():
                         with gr.Group(elem_classes="book-card"):
                             gr.Markdown("**Pride and Prejudice**")
-                            gr.Markdown("Jane Austen")
-                            gr.Markdown('<div class="rating">⭐ 4.6</div>')
-                            austen_btn = gr.Button("Start Chat", size="sm", variant="secondary")
+                            gr.Markdown("*Jane Austen*")
+                            gr.Markdown('⭐ **4.6**')
+                            austen_btn = gr.Button("💬 Start Chat", size="sm", variant="secondary")
                     
                     with gr.Column():
                         with gr.Group(elem_classes="book-card"):
                             gr.Markdown("**To Kill a Mockingbird**")
-                            gr.Markdown("Harper Lee")
-                            gr.Markdown('<div class="rating">⭐ 4.8</div>')
-                            lee_btn = gr.Button("Start Chat", size="sm", variant="secondary")
+                            gr.Markdown("*Harper Lee*")
+                            gr.Markdown('⭐ **4.8**')
+                            lee_btn = gr.Button("💬 Start Chat", size="sm", variant="secondary")
                 
                 # View All button
-                view_all_btn = gr.Button("View All", variant="secondary")
+                with gr.Row():
+                    view_all_btn = gr.Button("📖 View All Books", variant="secondary", size="sm")
 
             # Chat Section (initially hidden)
             with gr.Group(visible=False, elem_classes="chat-section") as chat_section:
-                gr.Markdown("## Chat with the Book")
-                chat = gr.ChatInterface(
-                    fn=echo,
-                    type="messages",
-                    chatbot=gr.Chatbot(
-                        height=400,
-                        type="messages",
-                        label="Conversation",
-                        scale=1,
-                        show_copy_button=True
-                    ),
-                    textbox=gr.Textbox(
+                gr.Markdown("## 💬 Chat with the Book")
+                chatbot = gr.Chatbot(
+                    height=400,
+                    show_copy_button=True,
+                    container=False
+                )
+                with gr.Row():
+                    msg = gr.Textbox(
                         placeholder="Ask a question about the book...",
                         container=False,
                         scale=7,
                         lines=2
-                    ),
-                    submit_btn="Send"
-                    # Retirer retry_btn, undo_btn, clear_btn qui ne sont pas supportés
-                )
+                    )
+                    submit_btn = gr.Button("Send", variant="primary", scale=1)
 
     # ---------- Event handlers ----------
     
@@ -288,8 +296,17 @@ with gr.Blocks(
     
     # View All button (placeholder)
     view_all_btn.click(
-        fn=lambda: gr.update(value="More books coming soon!", visible=True),
+        fn=lambda: gr.update(value="📚 More books coming soon!", visible=True),
         outputs=status_text
     )
+    
+    # Chat functionality
+    def respond(message, chat_history):
+        bot_message = generate(message, BOOK_NAME)
+        chat_history.append((message, bot_message))
+        return "", chat_history
+
+    msg.submit(respond, [msg, chatbot], [msg, chatbot])
+    submit_btn.click(respond, [msg, chatbot], [msg, chatbot])
 
 demo.launch()
