@@ -108,23 +108,24 @@ with gr.Blocks(
     
     .feature-card {
         background: white;
-        border: 1px solid #e5e7eb;
+        border: 1px solid #f3d5b5;
         border-radius: 16px;
         padding: 32px 24px;
         text-align: center;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 8px rgba(139, 69, 19, 0.08);
         transition: all 0.3s ease;
     }
     
     .feature-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 16px rgba(139, 69, 19, 0.15);
+        border-color: #d2691e;
     }
     
     .feature-icon {
         width: 56px;
         height: 56px;
-        background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        background: linear-gradient(135deg, #d2691e 0%, #a0522d 100%);
         border-radius: 12px;
         display: flex;
         align-items: center;
@@ -147,18 +148,18 @@ with gr.Blocks(
         margin: 0;
     }
     
-    /* Search Section */
+    /* Search Section - Cozy Orange Background */
     .search-section {
         padding: 0 80px;
         margin-bottom: 60px;
     }
     
     .search-card {
-        background: white;
-        border: 1px solid #e5e7eb;
+        background: linear-gradient(135deg, #ffe4cc 0%, #ffd4a3 100%);
+        border: 1px solid #ffb366;
         border-radius: 20px;
         padding: 48px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 12px rgba(255, 140, 0, 0.15);
         display: flex;
         gap: 40px;
         align-items: center;
@@ -170,6 +171,7 @@ with gr.Blocks(
         height: 200px;
         border-radius: 12px;
         overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
     
     .search-image img {
@@ -192,12 +194,12 @@ with gr.Blocks(
     .search-title h2 {
         font-size: 32px;
         font-weight: 700;
-        color: #1f2937;
+        color: #8b4513;
         margin: 0;
     }
     
     .search-subtitle {
-        color: #6b7280;
+        color: #654321;
         font-size: 16px;
         margin-bottom: 24px;
     }
@@ -211,19 +213,21 @@ with gr.Blocks(
     .search-box-container input {
         flex: 1;
         padding: 14px 20px !important;
-        border: 2px solid #e5e7eb !important;
+        border: 2px solid #d2691e !important;
         border-radius: 12px !important;
         font-size: 15px !important;
+        background: white !important;
     }
     
     .search-box-container input:focus {
-        border-color: #f97316 !important;
+        border-color: #8b4513 !important;
         outline: none !important;
+        box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1) !important;
     }
     
     .search-button {
         padding: 14px 32px !important;
-        background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important;
+        background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%) !important;
         color: white !important;
         border: none !important;
         border-radius: 12px !important;
@@ -231,11 +235,13 @@ with gr.Blocks(
         font-weight: 600 !important;
         cursor: pointer !important;
         transition: all 0.3s ease !important;
+        box-shadow: 0 2px 8px rgba(139, 69, 19, 0.3) !important;
     }
     
     .search-button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4) !important;
+        box-shadow: 0 4px 12px rgba(139, 69, 19, 0.4) !important;
+        background: linear-gradient(135deg, #a0522d 0%, #8b4513 100%) !important;
     }
     
     .status-message {
@@ -273,7 +279,7 @@ with gr.Blocks(
         <div class="header-content">
             <div class="header-icon">📖</div>
             <div class="header-text">
-                <h1>Book Chat AI</h1>
+                <h1>Welcome to ChatBook</h1>
                 <p>Your intelligent reading companion</p>
             </div>
         </div>
@@ -306,7 +312,7 @@ with gr.Blocks(
     </div>
     """)
     
-    # Search Section
+    # Search Section with Cozy Orange Background
     with gr.Group(elem_classes="search-section"):
         gr.HTML("""
         <div class="search-card">
