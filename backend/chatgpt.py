@@ -34,7 +34,7 @@ def generate(user_prompt):
     ]
 
     # 4. Initialize client using HF Secrets
-    client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+    client = OpenAI(api_key=os.environ["CHATGPT_API_KEY"])
 
     # 5. Call model
     response = client.responses.create(
