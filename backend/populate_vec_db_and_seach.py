@@ -70,7 +70,78 @@ def get_paragraphs(book_name_sup: str):
         print(f"[WARNING] No paragraphs found for book '{book_name_sup}'.", flush=True)
     
     return selected_paragraphs
+#---------------------------------------- Function to get paragraph relaxed ---------------------------------------
+def get_paragraphs_relaxed(book_name_sup: str):
+    print(f"[DEBUG] get_paragraphs called with book_name_sup={book_name_sup}", flush=True)
 
+    # Pre-process user input for relaxed matching (lowercase, stripped)
+    target_clean = book_name_sup.lower().strip()
+
+    # 1. Try loading the dataset
+    try:
+        print("[DEBUG] Loading dataset…", flush=True)
+        dataset = load_dataset(
+            "Navanjana/Gutenberg_books", 
+            split="train", 
+            streaming=True
+        )
+        print("[DEBUG] Dataset loaded successfully (streaming mode).", flush=True)
+    except Exception as e:
+        print(f"[ERROR] Failed to load dataset: {e}", flush=True)
+        return []
+    
+    # Helper function for safe, relaxed matching
+    # Returns True if target is inside the book name (case-insensitive)
+    def is_match(row):
+        row_book = row.get("book_name")
+        if not row_book: 
+            return False
+        return target_clean in row_book.lower()
+
+    # 2. Start scanning dataset until we find the target book
+    # Logic: Drop rows while they do NOT match the target
+    print("[DEBUG] Starting dropwhile (scanning for first relaxed match)…", flush=True)
+    start_stream = dropwhile(lambda x: not is_match(x), dataset)
+
+    # 3. Prepare takewhile
+    # Logic: Take rows while they DO match the target
+    print("[DEBUG] Starting takewhile (reading matching rows)…", flush=True)
+    book_stream = takewhile(lambda x: is_match(x), start_stream)
+
+    selected_paragraphs = []
+    row_count = 0
+    match_count = 0
+    
+    # 4. Iterate through streaming rows
+    print("[DEBUG] Iterating through book_stream…", flush=True)
+    for row in book_stream:
+        row_count += 1
+        
+        # Log the actual book name found to verify the match
+        if row_count == 1:
+            print(f"[DEBUG] First match found on book: '{row.get('book_name')}'", flush=True)
+        
+        if row_count <= 3:
+            print(f"[DEBUG] Sample row #{row_count}: {row}", flush=True)
+
+        text = row.get("paragraph")
+        if text:
+            match_count += 1
+
+        if text and len(text) > 20:
+            selected_paragraphs.append(text)
+
+        if row_count % 500 == 0:
+            print(f"[DEBUG] Processed {row_count} rows, paragraphs collected: {len(selected_paragraphs)}", flush=True)
+
+    # 5. Summary
+    print(f"[DEBUG] Finished streaming. Total matching rows: {match_count}", flush=True)
+    print(f"[DEBUG] Total selected paragraphs (len > 20): {len(selected_paragraphs)}", flush=True)
+
+    if len(selected_paragraphs) == 0:
+        print(f"[WARNING] No paragraphs found for criteria '{book_name_sup}'.", flush=True)
+    
+    return selected_paragraphs
 
 #------------------------------ Function to check of collection already exists in qdrant -------------------------
 def does_collection_exist(collection_name , client):
@@ -135,7 +206,8 @@ def create_populate_collection_if_not_exist(book_name_sup):
     create_collection(collection_name, client, model, EMBEDDING_MODEL_NAME)
     print("[DEBUG] collection created")
 
-    selected_paragraphs = get_paragraphs(book_name_sup)
+    #selected_paragraphs = get_paragraphs(book_name_sup)
+    selected_paragraphs = get_paragraphs_relaxed(book_name_sup)
     print(f"[DEBUG] fetched {len(selected_paragraphs)} paragraphs")
 
     upload_embeddings(selected_paragraphs, client, model, collection_name)
