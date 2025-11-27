@@ -30,16 +30,14 @@ def clickTrigger(book_name):
 
 with gr.Blocks(
     css="""
-    /* Global Styles */
+    /* Global Styles - ELIMINER LES ESPACES */
     .gradio-container {
         max-width: 100% !important;
         padding: 0 !important;
         margin: 0 !important;
-        background: white !important;
-        font-family: system-ui, -apple-system, sans-serif !important;
     }
     
-    /* Supprimer TOUS les gaps et marges */
+    /* Supprimer TOUS les gaps et marges entre les sections */
     .gradio-container > .contain {
         gap: 0 !important;
         margin: 0 !important;
@@ -53,252 +51,376 @@ with gr.Blocks(
         padding-bottom: 0 !important;
     }
     
-    /* Header Section - EXACTEMENT COMME L'IMAGE */
+    /* Header Section - COINS COURBÉS EN BAS */
     .header-section {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 60px 0 40px 0 !important;
+        background: linear-gradient(135deg, #d97706 0%, #dc2626 100%);
+        padding: 100px 0 80px 0 !important;
         margin: 0 !important;
-        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-radius: 0 0 30px 30px !important;
+        min-height: 300px;
+    }
+    
+    .header-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: repeating-linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.03) 0px,
+            rgba(255, 255, 255, 0.03) 2px,
+            transparent 2px,
+            transparent 20px
+        );
+        pointer-events: none;
     }
     
     .header-content {
-        max-width: 600px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        position: relative;
+        z-index: 1;
+        max-width: 1400px;
         margin: 0 auto;
-        padding: 0 20px;
+        padding: 0 80px;
+    }
+    
+    .header-icon {
+        width: 100px;
+        height: 100px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 60px;
+        backdrop-filter: blur(10px);
     }
     
     .header-text h1 {
         color: white;
-        font-size: 2.5rem;
+        font-size: 56px;
         font-weight: 700;
-        margin: 0 0 8px 0;
+        margin: 0 0 12px 0;
         letter-spacing: -0.5px;
-        line-height: 1.1;
     }
     
     .header-text p {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.95);
+        font-size: 24px;
         margin: 0;
         font-weight: 400;
-        line-height: 1.4;
     }
     
-    /* Features Section - STYLE EXACT DE L'IMAGE */
+    /* Feature Cards Section - COINS COURBÉS EN HAUT ET EN BAS */
     .features-section {
-        background: white;
-        padding: 40px 0 30px 0 !important;
+        background: linear-gradient(135deg, #f5e6d3 0%, #e8d4b8 100%);
+        padding: 60px 0 !important;
         margin: 0 !important;
+        border-radius: 0 !important;
     }
     
     .features-grid {
         display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
-        max-width: 500px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        max-width: 1400px;
         margin: 0 auto;
-        padding: 0 20px;
+        padding: 0 80px;
     }
     
-    .feature-item {
+    .feature-card {
+        background: white;
+        border: 2px solid #d2b48c;
+        border-radius: 20px;
+        padding: 32px 24px;
         text-align: center;
-        padding: 0;
+        box-shadow: 0 4px 12px rgba(139, 69, 19, 0.1);
+        transition: all 0.3s ease;
     }
     
-    .feature-item h3 {
-        font-size: 1.3rem;
+    .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(139, 69, 19, 0.2);
+        border-color: #d2691e;
+    }
+    
+    .feature-icon {
+        width: 56px;
+        height: 56px;
+        background: linear-gradient(135deg, #d2691e 0%, #a0522d 100%);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px auto;
+        font-size: 28px;
+    }
+    
+    .feature-card h3 {
+        font-size: 18px;
         font-weight: 600;
-        color: #2d3748;
-        margin: 0 0 8px 0;
-        line-height: 1.3;
+        color: #1f2937;
+        margin: 0 0 12px 0;
     }
     
-    .feature-item p {
-        font-size: 1rem;
-        color: #718096;
-        line-height: 1.4;
+    .feature-card p {
+        font-size: 14px;
+        color: #6b7280;
+        line-height: 1.6;
         margin: 0;
     }
     
-    /* Search Section - STYLE EXACT */
-    .search-section {
+    /* Search Section - COINS COURBÉS EN HAUT ET EN BAS */
+    .search-section-wrapper {
         background: white;
-        padding: 30px 0 40px 0 !important;
+        padding: 80px 0 !important;
         margin: 0 !important;
-        text-align: center;
+        border-radius: 0 !important;
+    }
+    
+    .search-section {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 80px;
+    }
+    
+    .search-card {
+        background: linear-gradient(135deg, #ffe4cc 0%, #ffd4a3 100%);
+        border: 2px solid #ffb366;
+        border-radius: 25px;
+        padding: 60px;
+        box-shadow: 0 6px 16px rgba(255, 140, 0, 0.2);
+        display: flex;
+        gap: 50px;
+        align-items: center;
+        min-height: 280px;
+    }
+    
+    .search-image {
+        flex-shrink: 0;
+        width: 350px;
+        height: 240px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .search-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
     
     .search-content {
-        max-width: 500px;
-        margin: 0 auto;
-        padding: 0 20px;
+        flex: 1;
     }
     
     .search-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
         margin-bottom: 20px;
     }
     
     .search-title h2 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #2d3748;
-        margin: 0 0 12px 0;
-        line-height: 1.2;
-    }
-    
-    .search-subtitle {
-        font-size: 1rem;
-        color: #718096;
-        line-height: 1.4;
+        font-size: 38px;
+        font-weight: 700;
+        color: #8b4513;
         margin: 0;
     }
     
-    /* Search Input - STYLE EXACT */
+    .search-subtitle {
+        color: #654321;
+        font-size: 18px;
+        margin-bottom: 0;
+    }
+    
+    /* Search Inputs - MARGES ALIGNÉES */
     .search-inputs {
-        max-width: 500px;
-        margin: 0 auto !important;
-        padding: 0 20px !important;
+        max-width: 1400px !important;
+        margin: 30px auto 0 auto !important;
+        padding: 0 80px !important;
+        width: auto !important;
     }
     
     .search-box-container {
         display: flex;
-        gap: 10px;
-        margin-bottom: 15px;
-        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+        width: 100% !important;
+        max-width: 100% !important;
     }
     
     .search-box-container input {
         flex: 1;
-        padding: 12px 16px !important;
-        border: 1px solid #d1d5db !important;
-        border-radius: 8px !important;
-        font-size: 0.95rem !important;
+        padding: 16px 24px !important;
+        border: 2px solid #d2691e !important;
+        border-radius: 15px !important;
+        font-size: 16px !important;
         background: white !important;
-        color: #2d3748 !important;
+        width: 100% !important;
     }
     
     .search-box-container input:focus {
-        border-color: #667eea !important;
+        border-color: #8b4513 !important;
         outline: none !important;
-    }
-    
-    .search-box-container input::placeholder {
-        color: #9ca3af !important;
+        box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1) !important;
     }
     
     .search-button {
-        padding: 12px 24px !important;
-        background: #667eea !important;
+        padding: 16px 40px !important;
+        background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%) !important;
         color: white !important;
         border: none !important;
-        border-radius: 8px !important;
-        font-size: 0.95rem !important;
-        font-weight: 500 !important;
+        border-radius: 15px !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
         cursor: pointer !important;
-        min-width: 80px !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3) !important;
+        white-space: nowrap !important;
     }
     
     .search-button:hover {
-        background: #5a6fd8 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(139, 69, 19, 0.4) !important;
+        background: linear-gradient(135deg, #a0522d 0%, #8b4513 100%) !important;
     }
     
     .status-message {
-        max-width: 500px;
+        padding: 12px 20px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 500;
+        max-width: 1400px !important;
         margin: 0 auto !important;
-        text-align: center;
-        font-size: 0.9rem;
+        width: auto !important;
     }
     
-    /* Chat Section - STYLE EXACT COMME L'IMAGE */
+    /* Chat Section - COINS COURBÉS EN HAUT ET MARGES ALIGNÉES */
     .chat-section-wrapper {
-        background: #f8fafc;
-        padding: 40px 0 60px 0 !important;
+        background: white;
+        padding: 60px 0 80px 0 !important;
         margin: 0 !important;
-        border-top: 1px solid #e5e7eb;
+        border-radius: 30px 30px 0 0 !important;
     }
     
     .chat-section {
-        max-width: 500px !important;
+        max-width: 1400px !important;
         margin: 0 auto !important;
-        padding: 0 20px !important;
+        padding: 0 80px !important;
+        width: auto !important;
+    }
+    
+    .chat-container {
+        background: white;
+        border: 2px solid #e5e7eb;
+        border-radius: 25px;
+        padding: 32px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
     }
     
     .chat-header {
-        text-align: center;
-        margin-bottom: 30px;
+        font-size: 24px;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 24px;
+        width: 100% !important;
     }
     
-    .chat-header h3 {
-        font-size: 1.2rem;
-        font-weight: 500;
-        color: #6b7280;
-        margin: 0 0 20px 0;
-        font-style: italic;
+    /* FORCER la suppression de tous les espaces entre les blocs Gradio */
+    div[data-testid]:has(.header-section) {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        border-radius: 0 0 30px 30px !important;
+        overflow: hidden !important;
     }
     
-    /* Chat Interface Styling - TRÈS SIMPLE */
-    .chat-interface {
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        overflow: hidden;
+    div[data-testid]:has(.features-section) {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
     
-    /* Chatbot Styling */
-    .gradio-chatbot {
-        border: none !important;
-        background: white !important;
-        min-height: 200px !important;
-        max-height: 300px !important;
-        box-shadow: none !important;
+    div[data-testid]:has(.search-section-wrapper) {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
     
-    /* Textbox Styling - BOUTON "Send" */
-    .gradio-textbox {
-        border: 1px solid #e5e7eb !important;
-        border-radius: 8px !important;
-        padding: 12px 16px !important;
-        font-size: 0.95rem !important;
-        background: white !important;
+    div[data-testid]:has(.search-inputs) {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        max-width: 1400px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 80px !important;
+        padding-right: 80px !important;
     }
     
-    /* Button Styling */
-    .gradio-button {
-        background: #667eea !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 8px !important;
-        padding: 12px 20px !important;
-        font-weight: 500 !important;
-        margin-left: 8px !important;
+    div[data-testid]:has(.chat-section-wrapper) {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        border-radius: 30px 30px 0 0 !important;
+        overflow: hidden !important;
     }
     
-    .gradio-button:hover {
-        background: #5a6fd8 !important;
+    /* Assurer l'alignement parfait de tous les conteneurs */
+    .header-content,
+    .features-grid,
+    .search-section,
+    .search-inputs,
+    .chat-section {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 80px !important;
+        padding-right: 80px !important;
+        box-sizing: border-box !important;
     }
     
-    /* Container for chat input */
+    /* Correction spécifique pour les inputs */
     .gradio-row {
-        gap: 8px !important;
+        max-width: 1400px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 80px !important;
+        padding-right: 80px !important;
     }
     
-    /* Force remove all gaps */
-    div[data-testid] {
+    /* Pour le chatbot */
+    .gradio-chatbot {
+        max-width: 100% !important;
         margin: 0 !important;
-        padding: 0 !important;
     }
     
-    /* Hide the submit button label if it exists */
-    .submit-button {
-        display: none !important;
+    /* Pour la textbox du chat */
+    .gradio-textbox {
+        max-width: 100% !important;
+        margin: 0 !important;
     }
     """
 ) as demo:
     
-    # Header Section - EXACTEMENT COMME L'IMAGE
+    # Header - COINS COURBÉS EN BAS
     gr.HTML("""
     <div class="header-section">
         <div class="header-content">
+            <div class="header-icon">📖</div>
             <div class="header-text">
                 <h1>Welcome to ChatBook</h1>
                 <p>Your intelligent reading companion</p>
@@ -307,78 +429,88 @@ with gr.Blocks(
     </div>
     """)
     
-    # Features Section - EXACTEMENT COMME L'IMAGE
+    # Feature Cards
     gr.HTML("""
     <div class="features-section">
         <div class="features-grid">
-            <div class="feature-item">
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
                 <h3>Deep Discussions</h3>
                 <p>Ask complex questions about plot, themes, and characters</p>
             </div>
-            <div class="feature-item">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
                 <h3>Instant Answers</h3>
                 <p>Get immediate AI-powered responses about any book</p>
             </div>
-        </div>
-    </div>
-    """)
-    
-    # Search Section - EXACTEMENT COMME L'IMAGE
-    gr.HTML("""
-    <div class="search-section">
-        <div class="search-content">
-            <div class="search-title">
-                <h2>Find Your Book</h2>
-                <p class="search-subtitle">Enter a book title and start an intelligent conversation about it</p>
+            <div class="feature-card">
+                <div class="feature-icon">⏱️</div>
+                <h3>Save Time</h3>
+                <p>No need to re-read - get quick summaries and insights</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Learn More</h3>
+                <p>Discover hidden meanings and literary analysis</p>
             </div>
         </div>
     </div>
     """)
     
-    # Search Inputs
+    # Search Section
+    gr.HTML("""
+    <div class="search-section-wrapper">
+        <div class="search-section">
+            <div class="search-card">
+                <div class="search-image">
+                    <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&h=400&fit=crop" alt="Person reading">
+                </div>
+                <div class="search-content">
+                    <div class="search-title">
+                        <span style="font-size: 38px;"></span>
+                        <h2>Find Your Book</h2>
+                    </div>
+                    <p class="search-subtitle">Enter a book title and start an intelligent conversation about it</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    """)
+    
     with gr.Group(elem_classes="search-inputs"):
         with gr.Row(elem_classes="search-box-container"):
             book_box = gr.Textbox(
-                placeholder="Enter book title...",
+                placeholder="Enter book title (e.g, The Great Gatsby)...",
                 show_label=False,
                 container=False,
-                scale=7
+                scale=5
             )
-            search_btn = gr.Button("Search", elem_classes="search-button", scale=3)
+            search_btn = gr.Button("🔍 Search", elem_classes="search-button", scale=1)
         
         status_text = gr.HTML("", visible=False)
     
-    # Chat Section (hidden initially) - EXACTEMENT COMME L'IMAGE
+    # Chat Section - COINS COURBÉS EN HAUT
     with gr.Group(visible=False) as chat_section:
         gr.HTML("""
         <div class="chat-section-wrapper">
             <div class="chat-section">
-                <div class="chat-header">
-                    <h3>Ask me a question about any book...</h3>
-                </div>
+                <div class="chat-header">💬 Chat with Your Book</div>
+                <div class="chat-container">
         """)
         
-        # Chat Interface - SIMPLE COMME L'IMAGE
         chat = gr.ChatInterface(
             fn=echo,
             type="messages",
-            chatbot=gr.Chatbot(
-                height=200, 
-                type="messages",
-                show_label=False,
-                container=False,
-                show_copy_button=False
-            ),
+            chatbot=gr.Chatbot(height=500, type="messages"),
             textbox=gr.Textbox(
-                placeholder="Type your question here...",
+                placeholder="Ask anything about the book...",
                 container=False,
-                scale=8
-            ),
-            submit_btn="Send",
-            title=""
+                scale=7
+            )
         )
         
         gr.HTML("""
+                </div>
             </div>
         </div>
         """)
