@@ -64,4 +64,3 @@ with gr.Blocks() as demo:
         outputs=[status_text, chat_section]
     )
 
-demo.launch()
