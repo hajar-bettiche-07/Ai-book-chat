@@ -28,7 +28,7 @@ with gr.Blocks() as demo:
     # ---------- Book Search UI ------------------
     with gr.Group():
         book_box = gr.Textbox(
-            label="Enter book name",
+            label="Enter book name u",
             placeholder="e.g. Pride and Prejudice"
         )
         search_btn = gr.Button("Search")
