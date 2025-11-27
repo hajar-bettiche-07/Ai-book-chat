@@ -46,14 +46,15 @@ with gr.Blocks(
         margin-bottom: 0 !important;
     }
     
-    /* Header Section */
+    /* Header Section - BIGGER */
     .header-section {
         background: linear-gradient(135deg, #d97706 0%, #dc2626 100%);
-        padding: 60px 0;
+        padding: 100px 0;
         margin: 0;
         position: relative;
         overflow: hidden;
         border-radius: 0 0 30px 30px;
+        min-height: 300px;
     }
     
     .header-section::before {
@@ -76,7 +77,7 @@ with gr.Blocks(
     .header-content {
         display: flex;
         align-items: center;
-        gap: 24px;
+        gap: 30px;
         position: relative;
         z-index: 1;
         max-width: 1400px;
@@ -85,28 +86,28 @@ with gr.Blocks(
     }
     
     .header-icon {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
         background: rgba(255, 255, 255, 0.2);
-        border-radius: 20px;
+        border-radius: 25px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 48px;
+        font-size: 60px;
         backdrop-filter: blur(10px);
     }
     
     .header-text h1 {
         color: white;
-        font-size: 48px;
+        font-size: 56px;
         font-weight: 700;
-        margin: 0 0 8px 0;
+        margin: 0 0 12px 0;
         letter-spacing: -0.5px;
     }
     
     .header-text p {
         color: rgba(255, 255, 255, 0.95);
-        font-size: 20px;
+        font-size: 24px;
         margin: 0;
         font-weight: 400;
     }
@@ -318,7 +319,7 @@ with gr.Blocks(
     """
 ) as demo:
     
-    # Header
+    # Header - BIGGER
     gr.HTML("""
     <div class="header-section">
         <div class="header-content">
