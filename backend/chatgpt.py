@@ -1,8 +1,6 @@
 import os
 from openai import OpenAI
 from backend.populate_vec_db_and_seach import search_book
-from app import BOOK_NAME
-
 
 
 def generate(user_prompt,book_name):
