@@ -34,15 +34,27 @@ with gr.Blocks(
     .gradio-container {
         max-width: 100% !important;
         padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Remove all gaps */
+    .contain {
+        gap: 0 !important;
     }
     
     /* Header Section */
     .header-section {
         background: linear-gradient(135deg, #d97706 0%, #dc2626 100%);
         padding: 60px 80px;
-        margin: 0 0 0 0;
+        margin: 0 !important;
         position: relative;
         overflow: hidden;
+        border-radius: 0 0 30px 30px;
     }
     
     .header-section::before {
@@ -104,22 +116,23 @@ with gr.Blocks(
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 24px;
-        margin-bottom: 0;
+        margin: 0 !important;
+        border-radius: 30px;
     }
     
     .feature-card {
         background: white;
-        border: 1px solid #d2b48c;
-        border-radius: 16px;
+        border: 2px solid #d2b48c;
+        border-radius: 20px;
         padding: 32px 24px;
         text-align: center;
-        box-shadow: 0 2px 8px rgba(139, 69, 19, 0.08);
+        box-shadow: 0 4px 12px rgba(139, 69, 19, 0.1);
         transition: all 0.3s ease;
     }
     
     .feature-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 8px 16px rgba(139, 69, 19, 0.15);
+        box-shadow: 0 8px 20px rgba(139, 69, 19, 0.2);
         border-color: #d2691e;
     }
     
@@ -152,16 +165,17 @@ with gr.Blocks(
     /* Search Section - Cozy Orange Background */
     .search-section {
         padding: 60px 80px;
-        margin-bottom: 0;
+        margin: 0 !important;
         background: white;
+        border-radius: 30px;
     }
     
     .search-card {
         background: linear-gradient(135deg, #ffe4cc 0%, #ffd4a3 100%);
-        border: 1px solid #ffb366;
-        border-radius: 20px;
+        border: 2px solid #ffb366;
+        border-radius: 25px;
         padding: 48px;
-        box-shadow: 0 4px 12px rgba(255, 140, 0, 0.15);
+        box-shadow: 0 6px 16px rgba(255, 140, 0, 0.2);
         display: flex;
         gap: 40px;
         align-items: center;
@@ -171,9 +185,9 @@ with gr.Blocks(
         flex-shrink: 0;
         width: 300px;
         height: 200px;
-        border-radius: 12px;
+        border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
     
     .search-image img {
@@ -216,7 +230,7 @@ with gr.Blocks(
         flex: 1;
         padding: 14px 20px !important;
         border: 2px solid #d2691e !important;
-        border-radius: 12px !important;
+        border-radius: 15px !important;
         font-size: 15px !important;
         background: white !important;
     }
@@ -232,23 +246,23 @@ with gr.Blocks(
         background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%) !important;
         color: white !important;
         border: none !important;
-        border-radius: 12px !important;
+        border-radius: 15px !important;
         font-size: 16px !important;
         font-weight: 600 !important;
         cursor: pointer !important;
         transition: all 0.3s ease !important;
-        box-shadow: 0 2px 8px rgba(139, 69, 19, 0.3) !important;
+        box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3) !important;
     }
     
     .search-button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(139, 69, 19, 0.4) !important;
+        box-shadow: 0 6px 16px rgba(139, 69, 19, 0.4) !important;
         background: linear-gradient(135deg, #a0522d 0%, #8b4513 100%) !important;
     }
     
     .status-message {
         padding: 12px 20px;
-        border-radius: 8px;
+        border-radius: 12px;
         font-size: 14px;
         font-weight: 500;
     }
@@ -257,14 +271,16 @@ with gr.Blocks(
     .chat-section {
         padding: 60px 80px 80px 80px;
         background: white;
+        margin: 0 !important;
+        border-radius: 30px 30px 0 0;
     }
     
     .chat-container {
         background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 20px;
+        border: 2px solid #e5e7eb;
+        border-radius: 25px;
         padding: 32px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     }
     
     .chat-header {
