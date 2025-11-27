@@ -62,3 +62,4 @@ with gr.Blocks() as demo:
         inputs=book_box,
         outputs=[status_text, chat_section]
     )
+demo.launch()
