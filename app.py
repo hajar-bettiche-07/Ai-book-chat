@@ -30,11 +30,12 @@ def clickTrigger(book_name):
 
 with gr.Blocks(
     css="""
-    /* Global Styles - ELIMINER LES ESPACES */
+    /* Global Styles - ÉLIMINATION COMPLÈTE DES ESPACES */
     .gradio-container {
         max-width: 100% !important;
         padding: 0 !important;
         margin: 0 !important;
+        overflow-x: hidden !important;
     }
     
     /* Supprimer TOUS les gaps et marges entre les sections */
@@ -85,9 +86,9 @@ with gr.Blocks(
         gap: 30px;
         position: relative;
         z-index: 1;
-        max-width: 1400px;
+        max-width: 1200px;
         margin: 0 auto;
-        padding: 0 80px;
+        padding: 0 40px;
     }
     
     .header-icon {
@@ -117,7 +118,7 @@ with gr.Blocks(
         font-weight: 400;
     }
     
-    /* Feature Cards Section - COINS COURBÉS EN HAUT ET EN BAS */
+    /* Feature Cards Section - SANS ESPACES LATÉRAUX */
     .features-section {
         background: linear-gradient(135deg, #f5e6d3 0%, #e8d4b8 100%);
         padding: 60px 0 !important;
@@ -128,17 +129,17 @@ with gr.Blocks(
     .features-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
-        max-width: 1400px;
+        gap: 20px;
+        max-width: 1200px;
         margin: 0 auto;
-        padding: 0 80px;
+        padding: 0 40px;
     }
     
     .feature-card {
         background: white;
         border: 2px solid #d2b48c;
         border-radius: 20px;
-        padding: 32px 24px;
+        padding: 30px 20px;
         text-align: center;
         box-shadow: 0 4px 12px rgba(139, 69, 19, 0.1);
         transition: all 0.3s ease;
@@ -176,7 +177,7 @@ with gr.Blocks(
         margin: 0;
     }
     
-    /* Search Section - COINS COURBÉS EN HAUT ET EN BAS */
+    /* Search Section - SANS ESPACES LATÉRAUX */
     .search-section-wrapper {
         background: white;
         padding: 80px 0 !important;
@@ -185,27 +186,27 @@ with gr.Blocks(
     }
     
     .search-section {
-        max-width: 1400px;
+        max-width: 1200px;
         margin: 0 auto;
-        padding: 0 80px;
+        padding: 0 40px;
     }
     
     .search-card {
         background: linear-gradient(135deg, #ffe4cc 0%, #ffd4a3 100%);
         border: 2px solid #ffb366;
         border-radius: 25px;
-        padding: 60px;
+        padding: 50px;
         box-shadow: 0 6px 16px rgba(255, 140, 0, 0.2);
         display: flex;
-        gap: 50px;
+        gap: 40px;
         align-items: center;
-        min-height: 280px;
+        min-height: 260px;
     }
     
     .search-image {
         flex-shrink: 0;
-        width: 350px;
-        height: 240px;
+        width: 300px;
+        height: 200px;
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -229,7 +230,7 @@ with gr.Blocks(
     }
     
     .search-title h2 {
-        font-size: 38px;
+        font-size: 36px;
         font-weight: 700;
         color: #8b4513;
         margin: 0;
@@ -239,13 +240,14 @@ with gr.Blocks(
         color: #654321;
         font-size: 18px;
         margin-bottom: 0;
+        line-height: 1.5;
     }
     
-    /* Search Inputs - MARGES ALIGNÉES */
+    /* Search Inputs - ALIGNÉ AVEC LES SECTIONS */
     .search-inputs {
-        max-width: 1400px !important;
+        max-width: 1200px !important;
         margin: 30px auto 0 auto !important;
-        padding: 0 80px !important;
+        padding: 0 40px !important;
         width: auto !important;
     }
     
@@ -259,7 +261,7 @@ with gr.Blocks(
     
     .search-box-container input {
         flex: 1;
-        padding: 16px 24px !important;
+        padding: 16px 20px !important;
         border: 2px solid #d2691e !important;
         border-radius: 15px !important;
         font-size: 16px !important;
@@ -274,7 +276,7 @@ with gr.Blocks(
     }
     
     .search-button {
-        padding: 16px 40px !important;
+        padding: 16px 35px !important;
         background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%) !important;
         color: white !important;
         border: none !important;
@@ -283,7 +285,7 @@ with gr.Blocks(
         font-weight: 600 !important;
         cursor: pointer !important;
         transition: all 0.3s ease !important;
-        box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3) !important;
+        box-shadow:   4px 12px rgba(139, 69, 19, 0.3) !important;
         white-space: nowrap !important;
     }
     
@@ -298,12 +300,12 @@ with gr.Blocks(
         border-radius: 12px;
         font-size: 14px;
         font-weight: 500;
-        max-width: 1400px !important;
+        max-width: 1200px !important;
         margin: 0 auto !important;
         width: auto !important;
     }
     
-    /* Chat Section - COINS COURBÉS EN HAUT ET MARGES ALIGNÉES */
+    /* Chat Section - COINS COURBÉS EN HAUT ET ALIGNÉ */
     .chat-section-wrapper {
         background: white;
         padding: 60px 0 80px 0 !important;
@@ -312,9 +314,9 @@ with gr.Blocks(
     }
     
     .chat-section {
-        max-width: 1400px !important;
+        max-width: 1200px !important;
         margin: 0 auto !important;
-        padding: 0 80px !important;
+        padding: 0 40px !important;
         width: auto !important;
     }
     
@@ -322,7 +324,7 @@ with gr.Blocks(
         background: white;
         border: 2px solid #e5e7eb;
         border-radius: 25px;
-        padding: 32px;
+        padding: 30px;
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
         width: 100% !important;
         max-width: 100% !important;
@@ -335,6 +337,7 @@ with gr.Blocks(
         color: #1f2937;
         margin-bottom: 24px;
         width: 100% !important;
+        text-align: center;
     }
     
     /* FORCER la suppression de tous les espaces entre les blocs Gradio */
@@ -364,11 +367,11 @@ with gr.Blocks(
         margin-bottom: 0 !important;
         padding-top: 0 !important;
         padding-bottom: 0 !important;
-        max-width: 1400px !important;
+        max-width: 1200px !important;
         margin-left: auto !important;
         margin-right: auto !important;
-        padding-left: 80px !important;
-        padding-right: 80px !important;
+        padding-left: 40px !important;
+        padding-right: 40px !important;
     }
     
     div[data-testid]:has(.chat-section-wrapper) {
@@ -388,30 +391,91 @@ with gr.Blocks(
     .chat-section {
         margin-left: auto !important;
         margin-right: auto !important;
-        padding-left: 80px !important;
-        padding-right: 80px !important;
+        padding-left: 40px !important;
+        padding-right: 40px !important;
         box-sizing: border-box !important;
     }
     
     /* Correction spécifique pour les inputs */
     .gradio-row {
-        max-width: 1400px !important;
+        max-width: 1200px !important;
         margin-left: auto !important;
         margin-right: auto !important;
-        padding-left: 80px !important;
-        padding-right: 80px !important;
+        padding-left: 40px !important;
+        padding-right: 40px !important;
     }
     
     /* Pour le chatbot */
     .gradio-chatbot {
         max-width: 100% !important;
         margin: 0 !important;
+        border-radius: 15px !important;
     }
     
     /* Pour la textbox du chat */
     .gradio-textbox {
         max-width: 100% !important;
         margin: 0 !important;
+        border-radius: 15px !important;
+    }
+    
+    /* Styles pour les messages du chat */
+    .gradio-chatbot .message {
+        border-radius: 15px !important;
+        margin: 8px 0 !important;
+    }
+    
+    /* Suppression définitive de tous les espaces résiduels */
+    .gradio-box {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    .panel {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Responsive design pour petits écrans */
+    @media (max-width: 768px) {
+        .header-content,
+        .features-grid,
+        .search-section,
+        .search-inputs,
+        .chat-section {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+        }
+        
+        .header-content {
+            flex-direction: column;
+            text-align: center;
+            gap: 20px;
+        }
+        
+        .features-grid {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .search-card {
+            flex-direction: column;
+            padding: 30px;
+            gap: 25px;
+        }
+        
+        .search-image {
+            width: 100%;
+            height: 180px;
+        }
+        
+        .header-text h1 {
+            font-size: 42px;
+        }
+        
+        .header-text p {
+            font-size: 20px;
+        }
     }
     """
 ) as demo:
