@@ -258,19 +258,27 @@ with gr.Blocks(
         flex: 1;
     }
     
-    .search-title {
-        align-items: center;
-        gap: 0px;
-        margin-bottom: 20px;
-    }
-    
-    .search-title h2 {
-        font-size: 38px;
-        font-weight: 700;
-        color: #8b4513;
-        margin: 0;
-    }
-    
+/* FULL PAGE SECTION */
+.search-title {
+    width: 100vw;      /* Full screen width */
+    height: 100vh;     /* Full screen height */
+    display: flex;     /* Enable flex layout */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0px;
+    margin: 0;         /* Remove default margins */
+    padding: 0;
+}
+
+/* TEXT STYLES */
+.search-title h2 {
+    font-size: 38px;
+    font-weight: 700;
+    color: #8b4513;
+    margin: 0;
+}
+
     .search-subtitle {
         color: #654321;
         font-size: 18px;
