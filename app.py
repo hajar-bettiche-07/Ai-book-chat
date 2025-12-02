@@ -490,14 +490,7 @@ with gr.Blocks(
         status_text = gr.HTML("", visible=False)
     
     # Chat Section - COINS COURBÉS EN HAUT
-    with gr.Group(visible=False) as chat_section:
-        gr.HTML("""
-        <div class="chat-section-wrapper">
-            <div class="chat-section">
-                <div class="chat-header">💬 Chat with Your Book</div>
-                <div class="chat-container">
-        """)
-        
+
         chat = gr.ChatInterface(
             fn=echo,
             type="messages",
