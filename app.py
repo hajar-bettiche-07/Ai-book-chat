@@ -258,27 +258,24 @@ with gr.Blocks(
         flex: 1;
     }
     
-/* FULL PAGE SECTION */
-.search-title {
-    width: 100vw;      /* Full screen width */
-    height: 100vh;     /* Full screen height */
-    display: flex;     /* Enable flex layout */
-    flex-direction: column;
+    .search-title {
+    width: 100%;
+    display: flex;
     align-items: center;
-    justify-content: center;
     gap: 0px;
-    margin: 0;         /* Remove default margins */
-    padding: 0;
-}
-
-/* TEXT STYLES */
-.search-title h2 {
+    margin: 0;           /* removes ALL margins */
+    margin-bottom: 20px; /* keep bottom space only */
+    padding: 0;          /* removes left/right padding if any */
+    }
+    
+    .search-title h2 {
     font-size: 38px;
     font-weight: 700;
     color: #8b4513;
     margin: 0;
 }
 
+    
     .search-subtitle {
         color: #654321;
         font-size: 18px;
