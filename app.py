@@ -278,7 +278,7 @@ with gr.Blocks(
         margin-bottom: 0;
     }
     
-    /* Search inputs attached directly, zero padding and margin */
+    /* Search inputs attached directly, zero vertical padding */
     .search-inputs {
         max-width: 100% !important;
         margin: 0 auto !important;
@@ -542,16 +542,5 @@ with gr.Blocks(
             </div>
         </div>
         """)
-    
-    # Event Handlers
-    search_btn.click(
-        fn=show_loading_message,
-        outputs=status_text,
-        queue=False
-    ).then(
-        fn=clickTrigger,
-        inputs=book_box,
-        outputs=[status_text, chat_section]
-    )
 
 demo.launch()
