@@ -259,7 +259,6 @@ with gr.Blocks(
     }
     
     .search-title {
-        display: flex;
         align-items: center;
         gap: 0px;
         margin-bottom: 20px;
