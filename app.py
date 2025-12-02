@@ -30,15 +30,32 @@ def clickTrigger(book_name):
 
 with gr.Blocks(
     css="""
-    /* Global Styles - ÉLIMINATION COMPLÈTE DES ESPACES */
+    /* Global Styles - Eliminate all gaps and spaces */
+    * {
+        box-sizing: border-box;
+    }
+    
     .gradio-container {
         max-width: 100% !important;
         padding: 0 !important;
         margin: 0 !important;
-        overflow-x: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0 !important;
     }
     
-    /* Supprimer TOUS les gaps et marges entre les sections */
+    .gradio-block {
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
+    }
+    
+    .gradio-group {
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
+    }
+    
     .gradio-container > .contain {
         gap: 0 !important;
         margin: 0 !important;
@@ -52,7 +69,7 @@ with gr.Blocks(
         padding-bottom: 0 !important;
     }
     
-    /* Header Section - COINS COURBÉS EN BAS */
+    /* Header Section - Rounded bottom corners */
     .header-section {
         background: linear-gradient(135deg, #d97706 0%, #dc2626 100%);
         padding: 100px 0 80px 0 !important;
@@ -86,9 +103,9 @@ with gr.Blocks(
         gap: 30px;
         position: relative;
         z-index: 1;
-        max-width: 1200px;
+        max-width: 100%;
         margin: 0 auto;
-        padding: 0 40px;
+        padding: 0 120px;
     }
     
     .header-icon {
@@ -118,10 +135,10 @@ with gr.Blocks(
         font-weight: 400;
     }
     
-    /* Feature Cards Section - SANS ESPACES LATÉRAUX */
+    /* Features Section - No spacing */
     .features-section {
         background: linear-gradient(135deg, #f5e6d3 0%, #e8d4b8 100%);
-        padding: 60px 0 !important;
+        padding: 80px 0 !important;
         margin: 0 !important;
         border-radius: 0 !important;
     }
@@ -129,17 +146,17 @@ with gr.Blocks(
     .features-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-        max-width: 1200px;
+        gap: 24px;
+        max-width: 100%;
         margin: 0 auto;
-        padding: 0 40px;
+        padding: 0 120px;
     }
     
     .feature-card {
         background: white;
         border: 2px solid #d2b48c;
         border-radius: 20px;
-        padding: 30px 20px;
+        padding: 32px 24px;
         text-align: center;
         box-shadow: 0 4px 12px rgba(139, 69, 19, 0.1);
         transition: all 0.3s ease;
@@ -177,36 +194,36 @@ with gr.Blocks(
         margin: 0;
     }
     
-    /* Search Section - SANS ESPACES LATÉRAUX */
+    /* Search Section - No spacing */
     .search-section-wrapper {
         background: white;
-        padding: 80px 0 40px 0 !important;
+        padding: 80px 0 !important;
         margin: 0 !important;
         border-radius: 0 !important;
     }
     
     .search-section {
-        max-width: 1200px;
+        max-width: 100%;
         margin: 0 auto;
-        padding: 0 40px;
+        padding: 0 120px;
     }
     
     .search-card {
         background: linear-gradient(135deg, #ffe4cc 0%, #ffd4a3 100%);
         border: 2px solid #ffb366;
         border-radius: 25px;
-        padding: 50px;
+        padding: 80px;
         box-shadow: 0 6px 16px rgba(255, 140, 0, 0.2);
         display: flex;
-        gap: 40px;
+        gap: 50px;
         align-items: center;
-        min-height: 260px;
+        min-height: 350px;
     }
     
     .search-image {
         flex-shrink: 0;
-        width: 300px;
-        height: 200px;
+        width: 350px;
+        height: 240px;
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -230,7 +247,7 @@ with gr.Blocks(
     }
     
     .search-title h2 {
-        font-size: 36px;
+        font-size: 38px;
         font-weight: 700;
         color: #8b4513;
         margin: 0;
@@ -240,16 +257,14 @@ with gr.Blocks(
         color: #654321;
         font-size: 18px;
         margin-bottom: 0;
-        line-height: 1.5;
     }
     
-    /* CORRECTION CRITIQUE : Search Inputs - ALIGNÉ PARFAITEMENT */
+    /* Search Inputs - Aligned margins */
     .search-inputs {
-        max-width: 1200px !important;
+        max-width: 100% !important;
         margin: 0 auto !important;
-        padding: 0 40px !important;
-        width: auto !important;
-        background: white !important;
+        padding: 0 120px !important;
+        width: 100% !important;
     }
     
     .search-box-container {
@@ -262,13 +277,12 @@ with gr.Blocks(
     
     .search-box-container input {
         flex: 1;
-        padding: 16px 20px !important;
+        padding: 16px 24px !important;
         border: 2px solid #d2691e !important;
         border-radius: 15px !important;
         font-size: 16px !important;
         background: white !important;
         width: 100% !important;
-        margin: 0 !important;
     }
     
     .search-box-container input:focus {
@@ -278,7 +292,7 @@ with gr.Blocks(
     }
     
     .search-button {
-        padding: 16px 35px !important;
+        padding: 16px 40px !important;
         background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%) !important;
         color: white !important;
         border: none !important;
@@ -289,7 +303,6 @@ with gr.Blocks(
         transition: all 0.3s ease !important;
         box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3) !important;
         white-space: nowrap !important;
-        margin: 0 !important;
     }
     
     .search-button:hover {
@@ -303,71 +316,47 @@ with gr.Blocks(
         border-radius: 12px;
         font-size: 14px;
         font-weight: 500;
-        max-width: 1200px !important;
         margin: 0 auto !important;
-        width: auto !important;
-        background: white !important;
+        width: 100% !important;
     }
     
-    /* Chat Section - COINS COURBÉS EN HAUT ET ALIGNÉ */
+    /* Chat Section - Enlarged with rounded top corners */
     .chat-section-wrapper {
         background: white;
-        padding: 60px 0 80px 0 !important;
+        padding: 100px 0 120px 0 !important;
         margin: 0 !important;
         border-radius: 30px 30px 0 0 !important;
+        min-height: 800px;
     }
     
     .chat-section {
-        max-width: 1200px !important;
+        max-width: 100% !important;
         margin: 0 auto !important;
-        padding: 0 40px !important;
-        width: auto !important;
+        padding: 0 120px !important;
+        width: 100% !important;
     }
     
     .chat-container {
         background: white;
         border: 2px solid #e5e7eb;
         border-radius: 25px;
-        padding: 30px;
+        padding: 48px;
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
+        min-height: 600px;
     }
     
     .chat-header {
-        font-size: 24px;
+        font-size: 28px;
         font-weight: 700;
         color: #1f2937;
-        margin-bottom: 24px;
+        margin-bottom: 32px;
         width: 100% !important;
-        text-align: center;
     }
     
-    /* CORRECTIONS SPÉCIFIQUES POUR L'ALIGNEMENT */
-    /* Forcer l'alignement de la section des inputs */
-    div[data-testid]:has(.search-inputs) {
-        background: white !important;
-        padding: 20px 0 40px 0 !important;
-        margin: 0 !important;
-        max-width: 100% !important;
-    }
-    
-    /* Alignement spécifique pour le groupe search-inputs */
-    .search-inputs .gradio-row {
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    
-    /* Supprimer les marges internes de Gradio */
-    .gradio-row {
-        gap: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    
-    /* FORCER la suppression de tous les espaces entre les blocs Gradio */
+    /* Force removal of spaces between Gradio blocks */
     div[data-testid]:has(.header-section) {
         margin-bottom: 0 !important;
         padding-bottom: 0 !important;
@@ -395,6 +384,10 @@ with gr.Blocks(
         padding-top: 0 !important;
         padding-bottom: 0 !important;
         max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 120px !important;
+        padding-right: 120px !important;
     }
     
     div[data-testid]:has(.chat-section-wrapper) {
@@ -406,99 +399,20 @@ with gr.Blocks(
         overflow: hidden !important;
     }
     
-    /* Assurer l'alignement parfait de tous les conteneurs */
-    .header-content,
-    .features-grid,
-    .search-section,
-    .search-inputs,
-    .chat-section {
-        margin-left: auto !important;
-        margin-right: auto !important;
-        padding-left: 40px !important;
-        padding-right: 40px !important;
-        box-sizing: border-box !important;
-    }
-    
-    /* Pour le chatbot */
     .gradio-chatbot {
         max-width: 100% !important;
         margin: 0 !important;
-        border-radius: 15px !important;
+        height: 500px !important;
     }
     
-    /* Pour la textbox du chat */
     .gradio-textbox {
         max-width: 100% !important;
         margin: 0 !important;
-        border-radius: 15px !important;
-    }
-    
-    /* Styles pour les messages du chat */
-    .gradio-chatbot .message {
-        border-radius: 15px !important;
-        margin: 8px 0 !important;
-    }
-    
-    /* Suppression définitive de tous les espaces résiduels */
-    .gradio-box {
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    
-    .panel {
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    
-    /* Responsive design pour petits écrans */
-    @media (max-width: 768px) {
-        .header-content,
-        .features-grid,
-        .search-section,
-        .search-inputs,
-        .chat-section {
-            padding-left: 20px !important;
-            padding-right: 20px !important;
-        }
-        
-        .header-content {
-            flex-direction: column;
-            text-align: center;
-            gap: 20px;
-        }
-        
-        .features-grid {
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
-        
-        .search-card {
-            flex-direction: column;
-            padding: 30px;
-            gap: 25px;
-        }
-        
-        .search-image {
-            width: 100%;
-            height: 180px;
-        }
-        
-        .header-text h1 {
-            font-size: 42px;
-        }
-        
-        .header-text p {
-            font-size: 20px;
-        }
-        
-        .search-box-container {
-            flex-direction: column;
-        }
     }
     """
 ) as demo:
     
-    # Header - COINS COURBÉS EN BAS
+    # Header - Rounded bottom corners
     gr.HTML("""
     <div class="header-section">
         <div class="header-content">
@@ -559,7 +473,6 @@ with gr.Blocks(
     </div>
     """)
     
-    # Section des inputs de recherche - MAINTENANT PARFAITEMENT ALIGNÉE
     with gr.Group(elem_classes="search-inputs"):
         with gr.Row(elem_classes="search-box-container"):
             book_box = gr.Textbox(
@@ -568,16 +481,16 @@ with gr.Blocks(
                 container=False,
                 scale=5
             )
-            search_btn = gr.Button("🔍 Search", elem_classes="search-button", scale=1)
+            search_btn = gr.Button("Search", elem_classes="search-button", scale=1)
         
         status_text = gr.HTML("", visible=False)
     
-    # Chat Section - COINS COURBÉS EN HAUT
+    # Chat Section - Enlarged
     with gr.Group(visible=False) as chat_section:
         gr.HTML("""
         <div class="chat-section-wrapper">
             <div class="chat-section">
-                <div class="chat-header">💬 Chat with Your Book</div>
+                <div class="chat-header">Chat with Your Book</div>
                 <div class="chat-container">
         """)
         
