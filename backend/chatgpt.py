@@ -42,7 +42,6 @@ def generate(user_prompt,book_name):
     response = client.responses.create(
         model="gpt-5-nano",
         input=input,
-        temperature=0.4
     )
 
     answer = response.output_text
