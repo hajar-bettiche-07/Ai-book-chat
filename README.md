@@ -1,8 +1,6 @@
-# ChatBook
+**A RAG assistant that answers questions about public-domain books, using only passages retrieved from the book.**
 
-**A Retrieval-Augmented Generation (RAG) assistant that answers questions about public-domain books.**
-
-Type the title of a book, ask a question, and get an answer grounded in passages retrieved from the book itself.
+Enter a book title and ChatBook indexes it, finds the passages most relevant to your question with semantic search, and asks an LLM to answer from those passages rather than from its own memory.
 
 🔗 **Live demo:** [huggingface.co/spaces/ccv2025/book-chat](https://huggingface.co/spaces/ccv2025/book-chat)
 
